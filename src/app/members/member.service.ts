@@ -17,7 +17,7 @@ export class MemberService {
     return this.http.get<Member[]>(this.membersURL);
   }
 
-  createMember(member: Member){
+  createMember(member: any){
     this.http.post(this.membersURL, member);
   }
 
