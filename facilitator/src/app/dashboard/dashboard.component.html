@@ -1,0 +1,6 @@
+<h2>Dashboard</h2>
+<div class="members-board">
+  <a *ngFor="let member of members" routerLink="/detail/{{member.id}}">
+    {{member.name}}
+  </a>
+</div>
