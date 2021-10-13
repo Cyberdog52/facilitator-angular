@@ -10,6 +10,7 @@ import { MeetingsComponent } from './meetings/meetings.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
+import { TopicComponent } from './topic/topic.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MemberDetailComponent } from './member-detail/member-detail.component';
     MeetingsComponent,
     RoomsComponent,
     DashboardComponent,
-    MemberDetailComponent
+    MemberDetailComponent,
+    TopicComponent
   ],
   imports: [
     HttpClientModule,

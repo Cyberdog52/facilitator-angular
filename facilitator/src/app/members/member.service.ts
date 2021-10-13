@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Member } from './members/member';
-import { MEMBERS } from './members/mock-members';
+import { Member } from './member';
+import { MEMBERS } from './mock-members';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class MemberService {
 
   constructor(private http: HttpClient) { }
 
@@ -16,8 +16,20 @@ export class DataService {
   getMembers(): Observable<Member[]>{
     return this.http.get<Member[]>(this.membersURL);
   }
-  
+
+  createMember(member: Member){
+    this.http.post(this.membersURL, member);
+  }
+
   getMember(id: number): Observable<Member> {
     return this.http.get<Member>(this.membersURL+'/'+id);
+  }
+
+  updateMember(id: number, member: Member){
+    this.http.put(this.membersURL+'/'+id, member);
+  }
+
+  deleteMember(id: number){
+    this.http.delete(this.membersURL+'/'+id);
   }
 }

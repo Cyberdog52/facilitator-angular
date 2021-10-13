@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../data.service';
+import { MemberService } from '../members/member.service';
 import { MeetingsComponent } from '../meetings/meetings.component';
 import { Member } from '../members/member';
 
@@ -14,7 +14,7 @@ export class MemberDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: MemberService
     ) {}
 
   ngOnInit(): void {

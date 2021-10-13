@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { MemberService } from './member.service';
 import { Member } from './member';
 
 @Component({
@@ -10,7 +10,7 @@ import { Member } from './member';
 export class MembersComponent implements OnInit {
   members: Member[] = [];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: MemberService) { }
 
   ngOnInit(): void {
     this.dataService.getMembers().subscribe(members => this.members = members);
