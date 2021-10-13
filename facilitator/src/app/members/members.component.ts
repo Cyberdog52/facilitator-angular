@@ -13,6 +13,6 @@ export class MembersComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.getMembers().subscribe(members => this.members);
+    this.dataService.getMembers().subscribe(members => this.members = members);
   }
 }

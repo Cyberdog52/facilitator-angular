@@ -1,1 +1,5 @@
-<p>member-detail works!</p>
+<div *ngIf='member'>
+  <h2>{{member.name}}</h2>
+  <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="{{member.name}}" minlength="4" maxlength="50">
+</div>

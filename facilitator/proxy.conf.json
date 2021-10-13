@@ -1,0 +1,10 @@
+{
+  "/posts": {
+    "target": "https://lambda-facilitator-backend.herokuapp.com/api/members",
+    "secure": true,
+    "pathRewrite": {
+    "^/posts": ""
+  },
+    "changeOrigin": true
+  }
+}
