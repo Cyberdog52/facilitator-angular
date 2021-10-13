@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Member } from './members/member';
@@ -8,15 +9,15 @@ import { MEMBERS } from './members/mock-members';
 })
 export class DataService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  private membersURL = 'https://lambda-facilitator-backend.herokuapp.com/api/members';
   
   getMembers(): Observable<Member[]>{
-    const members = of(MEMBERS)
-    return members;
+    return this.http.get<Member[]>(this.membersURL);
   }
   
-  getmember(id: number): Observable<Member> {
-    const member = MEMBERS.find(h => h.id === id)!;
-    return of(member);
+  getMember(id: number): Observable<Member> {
+    return this.http.get<Member>(this.membersURL+'/'+id);
   }
 }
