@@ -23,6 +23,6 @@ export class MembersComponent implements OnInit {
 
   addMember(){
     const newMember = { name: 'New Member', role: 'unassigned' };
-    this.memberService.createMember(newMember).subscribe(_ => this.getMembers());
+    //this.memberService.createMember(newMember).subscribe(_ => this.getMembers() );
   }
 }
