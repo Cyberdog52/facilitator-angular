@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from './member.service';
-import { Member } from './member';
+import { Member } from '../../model/member/member';
 import { MemberDetailComponent } from '../member-detail/member-detail.component';
 
 @Component({
@@ -23,6 +23,6 @@ export class MembersComponent implements OnInit {
 
   addMember(){
     const newMember = { name: 'New Member', role: 'unassigned' };
-    this.memberService.createMember(newMember);
+    //this.memberService.createMember(newMember).subscribe(_ => this.getMembers() );
   }
 }

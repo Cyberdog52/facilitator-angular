@@ -1,0 +1,11 @@
+<h2>Topics</h2>
+<div class="topics-board">
+  <ul>
+    <li *ngFor="let topic of topics" >
+      <a routerLink="/topic/{{topic.id}}">
+        {{topic.title}}
+      </a>
+    </li>
+  </ul>
+  <button (click)="addTopic()">Add Topic</button>
+</div>

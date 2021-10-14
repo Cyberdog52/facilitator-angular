@@ -1,1 +1,11 @@
-<p>meetings works!</p>
+<h2>Meetings</h2>
+<div class="meetings-board">
+  <ul class="meetings">
+    <li *ngFor="let meeting of meetings" >
+      <a routerLink="/meeting/{{meeting.id}}">
+        {{meeting.timeInMillis}}
+      </a>
+    </li>
+  </ul>
+  <button (click)="addMeeting()">Add Meeting</button>
+</div>
