@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Member } from './member';
+import { Member } from '../../model/member/member';
 import { MEMBERS } from './mock-members';
 
 @Injectable({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MemberService } from '../members/member.service';
 import { MeetingsComponent } from '../meetings/meetings.component';
-import { Member } from '../members/member';
+import { Member } from '../../model/member/member';
 
 @Component({
   selector: 'app-member-detail',
