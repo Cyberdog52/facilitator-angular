@@ -12,10 +12,10 @@ If your setup already has some of the required tools installed, please adjust ac
    Package Manager: **npm 7.23.0**
 5. Clone the master branch with `git clone https://github.com/Cyberdog52/facilitator-angular.git`
 6. Open the project in your prefered IDE
-7. Install the npm dependencies with `cd facilitator` followed by `npm install`
+7. Install the npm dependencies with `npm install`
 
 ## Run
 
-1. If not already done, navigate to facilitator: `cd facilitator`
-2. Start: `npm start`
+1. If not already done, navigate to the project root directory
+2. Start: `ng serve` (`npm start` is used for heroku and will serve the prod build in the dist folder)
 3. Go to http://localhost:4200
