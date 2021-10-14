@@ -1,1 +1,11 @@
-<p>games works!</p>
+<h2>Games</h2>
+<div class="games-board">
+  <ul class="games">
+    <li *ngFor="let game of games" >
+      <a routerLink="/game/{{game.id}}">
+        {{game.title}}
+      </a>
+    </li>
+  </ul>
+  <button (click)="addGame()">Add Game</button>
+</div>

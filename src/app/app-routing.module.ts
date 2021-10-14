@@ -6,14 +6,16 @@ import { MeetingsComponent } from './meetings/meetings.component';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { MembersComponent } from './members/members.component';
 import { RoomsComponent } from './rooms/rooms.component';
+import { TopicsComponent } from './topics/topics.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'members', component: MembersComponent },
   { path: 'meetings', component: MeetingsComponent },
+  { path: 'members', component: MembersComponent },
   { path: 'games', component: GamesComponent },
   { path: 'rooms', component: RoomsComponent },
+  { path: 'topics', component: TopicsComponent },
   { path: 'member/:id', component: MemberDetailComponent }
 ];
 

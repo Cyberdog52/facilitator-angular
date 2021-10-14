@@ -11,6 +11,10 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { TopicsComponent } from './topics/topics.component';
+import { RoomDetailComponent } from './room-detail/room-detail.component';
+import { TopicDetailComponent } from './topic-detail/topic-detail.component';
+import { GameDetailComponent } from './game-detail/game-detail.component';
+import { MeetingDetailComponent } from './meeting-detail/meeting-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { TopicsComponent } from './topics/topics.component';
     RoomsComponent,
     DashboardComponent,
     MemberDetailComponent,
-    TopicsComponent
+    TopicsComponent,
+    RoomDetailComponent,
+    TopicDetailComponent,
+    GameDetailComponent,
+    MeetingDetailComponent
   ],
   imports: [
     HttpClientModule,

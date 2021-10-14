@@ -1,1 +1,11 @@
-<p>rooms works!</p>
+<h2>Rooms</h2>
+<div class="rooms-board">
+  <ul>
+    <li *ngFor="let room of rooms" >
+      <a routerLink="/room/{{room.id}}">
+        {{room.name}}
+      </a>
+    </li>
+  </ul>
+  <button (click)="addRoom()">Add Room</button>
+</div>
