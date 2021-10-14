@@ -17,19 +17,19 @@ export class MemberService {
     return this.http.get<Member[]>(this.membersURL);
   }
 
-  createMember(member: any){
-    this.http.post(this.membersURL, member);
+  createMember(member: any): Observable<any>{
+    return this.http.post(this.membersURL, member);
   }
 
-  getMember(id: number): Observable<Member> {
+  getMember(id: string): Observable<Member> {
     return this.http.get<Member>(this.membersURL+'/'+id);
   }
 
-  updateMember(id: number, member: Member){
-    this.http.put(this.membersURL+'/'+id, member);
+  updateMember(id: string, member: Member): Observable<any>{
+    return this.http.put(this.membersURL+'/'+id, member);
   }
 
-  deleteMember(id: number){
-    this.http.delete(this.membersURL+'/'+id);
+  deleteMember(id: string): Observable<any>{
+    return this.http.delete(this.membersURL+'/'+id);
   }
 }

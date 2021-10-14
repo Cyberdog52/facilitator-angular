@@ -1,6 +1,6 @@
 export interface Topic {
-  id: number,
-  assigneeId: number,
+  id: string,
+  assigneeId: string,
   description: string,
   title: string
 }

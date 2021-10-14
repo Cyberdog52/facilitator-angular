@@ -1,8 +1,8 @@
 export interface Meeting {
-  id: number,
+  id: string,
   timeInMillis: number,
-  gameId?: number,
+  gameId?: string,
   memberIdReplyMap?: {},
-  roomId?: number,
+  roomId?: string,
   topicIds?: number[]
 }

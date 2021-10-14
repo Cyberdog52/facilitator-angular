@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MemberService } from '../members/member.service';
-import { MeetingsComponent } from '../meetings/meetings.component';
 import { Member } from '../../model/member/member';
 
 @Component({
@@ -11,10 +10,12 @@ import { Member } from '../../model/member/member';
 })
 export class MemberDetailComponent implements OnInit {
   member?: Member;
+  editing: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: MemberService
+    private router: Router,
+    private memberService: MemberService
     ) {}
 
   ngOnInit(): void {
@@ -22,7 +23,21 @@ export class MemberDetailComponent implements OnInit {
   }
 
   getMember(){
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.dataService.getMember(id).subscribe(member => this.member = member);
+    const id = this.route.snapshot.paramMap.get('id') as string;
+    this.memberService.getMember(id).subscribe(member => this.member = member);
+  }
+
+  edit(){
+    this.editing = true;
+  }
+
+  updateMember(){
+    this.editing = false;
+    const updatedMember = this.member as Member;
+    this.memberService.updateMember(updatedMember.id, updatedMember).subscribe(() => this.getMember());
+  }
+
+  deleteMember(){
+    this.memberService.deleteMember((this.member as Member).id).subscribe(() => this.router.navigateByUrl("/members"));
   }
 }
