@@ -15,8 +15,8 @@ export const MEETINGS: Meeting[] = [
     gameId: "2",
     roomId: "2",
     topicIds: [
-      1,
-      2
+      "1",
+      "2"
     ],
     memberIdReplyMap: {
       1: "DECLINED"
