@@ -19,6 +19,9 @@ export class MeetingDetailComponent implements OnInit {
   game?: Game;
   room?: Room;
   topics: Topic[] = [];
+  allGames: Game[] = [];
+  allRooms: Room[] = [];
+  allTopics: Topic[] = [];
   editing: boolean = false;
 
   constructor(
@@ -32,11 +35,18 @@ export class MeetingDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMeeting();
+    this.getComponentsLists();
   }
 
   getMeeting(){
     const id = this.route.snapshot.paramMap.get('id') as string;
     this.meetingService.getMeeting(id).subscribe(meeting => this.getComponents(meeting));
+  }
+
+  getComponentsLists(){
+    this.gameService.getGames().subscribe(games => this.allGames = games);
+    this.roomService.getRooms().subscribe(rooms => this.allRooms = rooms);
+    this.topicService.getTopics().subscribe(topics => this.allTopics = topics);
   }
 
   getComponents(meeting: Meeting){
@@ -60,5 +70,15 @@ export class MeetingDetailComponent implements OnInit {
 
   deleteMeeting(){
     this.meetingService.deleteMeeting((this.meeting as Meeting).id).subscribe(() => this.router.navigateByUrl("/meetings"));
+  }
+
+  addTopic(){
+    const meeting: Meeting = this.meeting as Meeting;
+    console.log(meeting.topicIds);
+    if(!meeting.topicIds){
+      meeting.topicIds = [];
+    }
+    meeting.topicIds[meeting.topicIds.length] = "1";
+    this.getComponents(meeting as Meeting);
   }
 }

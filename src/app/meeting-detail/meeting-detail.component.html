@@ -21,6 +21,29 @@
 
       TODO: add useful way to edit date and dropdown for available games/rooms/topics
     -->
+    <h3>Game</h3>
+    <select [(ngModel)]="meeting.gameId">
+      <option *ngFor="let game of allGames" [ngValue]="game.id">
+        {{ game.title }}
+      </option>
+    </select>
+
+    <h3>Room</h3>
+    <select [(ngModel)]="meeting.roomId">
+      <option *ngFor="let room of allRooms" [ngValue]="room.id">
+        {{ room.name }}
+      </option>
+    </select>
+
+    <h3>Topics</h3>
+    <div *ngIf='meeting.topicIds' >
+      <select *ngFor="let t of topics"  [(ngModel)]="meeting.topicIds[topics.indexOf(t)]">
+        <option *ngFor="let topic of allTopics" [ngValue]="topic.id">
+          {{ topic.title }}
+        </option>
+      </select>
+    </div>
+    <button (click)="addTopic()">Add Topic</button>
     <button (click)="updateMeeting()">Save</button>
   </div>
   <button (click)="deleteMeeting()">Delete</button>
