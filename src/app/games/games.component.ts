@@ -24,6 +24,6 @@ export class GamesComponent implements OnInit {
 
   addGame(){
     const newGame = { title: 'New Game', uri: 'https://samplegame.com' };
-    this.gameService.createGame(newGame);
+    this.gameService.createGame(newGame).subscribe(() => this.getGames());
   }
 }

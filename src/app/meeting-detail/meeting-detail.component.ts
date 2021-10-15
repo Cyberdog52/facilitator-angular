@@ -28,7 +28,7 @@ export class MeetingDetailComponent implements OnInit {
     private gameService: GameService,
     private roomService: RoomService,
     private topicService: TopicService
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.getMeeting();

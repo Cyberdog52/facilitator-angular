@@ -1,11 +1,13 @@
 <div *ngIf='member'>
   <div *ngIf='!editing'>
     <h2>{{member.name}}</h2>
-    <h3>{{member.role}}</h3>
+    <h3>Role</h3>
+    <p>{{member.role}}</p>
     <button (click)="edit()">Edit</button>
   </div>
   <div *ngIf='editing'>
     <input id="name" [(ngModel)]="member.name" placeholder="{{member.name}}" minlength="4" maxlength="50">
+    <h3>Role</h3>
     <input id="role" [(ngModel)]="member.role" placeholder="{{member.role}}" minlength="4" maxlength="50">
     <button (click)="updateMember()">Save</button>
   </div>
