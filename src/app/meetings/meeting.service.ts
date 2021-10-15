@@ -17,19 +17,19 @@ export class MeetingService {
     return this.http.get<Meeting[]>(this.meetingsURL);
   }
 
-  createMeeting(meeting: any){
-    this.http.post(this.meetingsURL, meeting);
+  createMeeting(meeting: any): Observable<any>{
+    return this.http.post(this.meetingsURL, meeting);
   }
 
-  getMeeting(id: number): Observable<Meeting> {
+  getMeeting(id: string): Observable<Meeting> {
     return this.http.get<Meeting>(this.meetingsURL+'/'+id);
   }
 
-  updateMeeting(id: number, meeting: Meeting){
-    this.http.put(this.meetingsURL+'/'+id, meeting);
+  updateMeeting(id: string, meeting: Meeting): Observable<any>{
+    return this.http.put(this.meetingsURL+'/'+id, meeting);
   }
 
-  deleteMeeting(id: number){
-    this.http.delete(this.meetingsURL+'/'+id);
+  deleteMeeting(id: string): Observable<any>{
+    return this.http.delete(this.meetingsURL+'/'+id);
   }
 }

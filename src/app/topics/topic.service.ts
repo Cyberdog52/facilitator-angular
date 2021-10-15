@@ -17,19 +17,19 @@ export class TopicService {
     return this.http.get<Topic[]>(this.topicsURL);
   }
 
-  createTopic(topic: any){
-    this.http.post(this.topicsURL, topic);
+  createTopic(topic: any): Observable<any>{
+    return this.http.post(this.topicsURL, topic);
   }
 
-  getTopic(id: number): Observable<Topic> {
+  getTopic(id: string): Observable<Topic> {
     return this.http.get<Topic>(this.topicsURL+'/'+id);
   }
 
-  updateTopic(id: number, topic: Topic){
-    this.http.put(this.topicsURL+'/'+id, topic);
+  updateTopic(id: string, topic: Topic): Observable<any>{
+    return this.http.put(this.topicsURL+'/'+id, topic);
   }
 
-  deleteTopic(id: number){
-    this.http.delete(this.topicsURL+'/'+id);
+  deleteTopic(id: string): Observable<any>{
+    return this.http.delete(this.topicsURL+'/'+id);
   }
 }

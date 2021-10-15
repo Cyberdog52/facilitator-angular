@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Game } from '../../model/game/game';
-import { GAMES } from 'src/model/game/mock-games';
+import { GAMES } from '../../model/game/mock-games';
 
 @Injectable({
   providedIn: 'root'
@@ -17,19 +17,19 @@ export class GameService {
     return this.http.get<Game[]>(this.gamesURL);
   }
 
-  createGame (game: any){
-    this.http.post(this.gamesURL, game);
+  createGame(game: any): Observable<any>{
+    return this.http.post(this.gamesURL, game);
   }
 
-  getGame(id: number): Observable<Game > {
+  getGame(id: string): Observable<Game> {
     return this.http.get<Game>(this.gamesURL+'/'+id);
   }
 
-  updateGame (id: number, game: Game ){
-    this.http.put(this.gamesURL+'/'+id, game);
+  updateGame(id: string, game: Game): Observable<any>{
+    return this.http.put(this.gamesURL+'/'+id, game);
   }
 
-  deleteGame (id: number){
-    this.http.delete(this.gamesURL+'/'+id);
+  deleteGame(id: string): Observable<any>{
+    return this.http.delete(this.gamesURL+'/'+id);
   }
 }
