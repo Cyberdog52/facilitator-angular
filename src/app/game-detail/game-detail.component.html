@@ -1,1 +1,16 @@
-<p>game-detail works!</p>
+<div *ngIf='game'>
+  <div *ngIf='!editing'>
+    <h2>{{game.title}}</h2>
+    <h3>{{game.uri}}</h3>
+    <button (click)="edit()">Edit</button>
+  </div>
+  <div *ngIf='editing'>
+    <input id="title" [(ngModel)]="game.title" placeholder="{{game.title}}" minlength="4" maxlength="50">
+    <input id="uri" [(ngModel)]="game.uri" placeholder="{{game.uri}}" minlength="4" maxlength="50">
+    <button (click)="updateGame()">Save</button>
+  </div>
+  <button (click)="deleteGame()">Delete</button>
+</div>
+<div *ngIf='!game'>
+  <h2>There is no game with this ID</h2>
+</div>

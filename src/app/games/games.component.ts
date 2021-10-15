@@ -23,7 +23,7 @@ export class GamesComponent implements OnInit {
   }
 
   addGame(){
-    const newGame = { name: 'New Game', role: 'unassigned' };
+    const newGame = { title: 'New Game', uri: 'https://samplegame.com' };
     this.gameService.createGame(newGame);
   }
 }
