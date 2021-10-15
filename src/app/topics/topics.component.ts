@@ -23,7 +23,7 @@ export class TopicsComponent implements OnInit {
   }
 
   addTopic(){
-    const newTopic = { name: 'New Topic', role: 'unassigned' };
-    this.topicService.createTopic(newTopic);
+    const newTopic = { title: 'New Topic', description: 'Add topic description here...', assigneeId: '1' };
+    this.topicService.createTopic(newTopic).subscribe(() => this.getTopics());
   }
 }

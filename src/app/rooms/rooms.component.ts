@@ -23,7 +23,7 @@ export class RoomsComponent implements OnInit {
   }
 
   addRoom(){
-    const newRoom = { name: 'New Room', role: 'unassigned' };
-    this.roomService.createRoom(newRoom);
+    const newRoom = { name: 'New Room', capacity: 10 };
+    this.roomService.createRoom(newRoom).subscribe(() => this.getRooms());
   }
 }

@@ -1,1 +1,16 @@
-<p>room-detail works!</p>
+<div *ngIf='room'>
+  <div *ngIf='!editing'>
+    <h2>{{room.name}}</h2>
+    <h3>Capacity: {{room.capacity}}</h3>
+    <button (click)="edit()">Edit</button>
+  </div>
+  <div *ngIf='editing'>
+    <input id="name" [(ngModel)]="room.name" placeholder="{{room.name}}" minlength="4" maxlength="50">
+    <input id="capacity" [(ngModel)]="room.capacity" placeholder="{{room.capacity}}" type="number">
+    <button (click)="updateRoom()">Save</button>
+  </div>
+  <button (click)="deleteRoom()">Delete</button>
+</div>
+<div *ngIf='!room'>
+  <h2>There is no room with this ID</h2>
+</div>

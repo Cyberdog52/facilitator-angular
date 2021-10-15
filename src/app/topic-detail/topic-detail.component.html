@@ -1,1 +1,20 @@
-<p>topic-detail works!</p>
+<div *ngIf='topic'>
+  <div *ngIf='!editing'>
+    <h2>{{topic.title}}</h2>
+    <p>{{topic.description}}</p>
+
+    <h3 *ngIf='assignee'>Assignee</h3>
+    <p *ngIf='assignee'>{{assignee.name}}</p>
+    <button (click)="edit()">Edit</button>
+  </div>
+  <div *ngIf='editing'>
+    <input id="title" [(ngModel)]="topic.title" placeholder="{{topic.title}}" minlength="4" maxlength="50">
+    <input id="description" [(ngModel)]="topic.description" placeholder="{{topic.description}}" minlength="4" maxlength="50">
+    <input id="assignee" [(ngModel)]="assignee" placeholder="{{assignee}}" minlength="4" maxlength="50">
+    <button (click)="updateTopic()">Save</button>
+  </div>
+  <button (click)="deleteTopic()">Delete</button>
+</div>
+<div *ngIf='!topic'>
+  <h2>There is no topic with this ID</h2>
+</div>
