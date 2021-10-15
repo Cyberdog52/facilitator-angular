@@ -9,8 +9,13 @@
   </div>
   <div *ngIf='editing'>
     <input id="title" [(ngModel)]="topic.title" placeholder="{{topic.title}}" minlength="4" maxlength="50">
-    <input id="description" [(ngModel)]="topic.description" placeholder="{{topic.description}}" minlength="4" maxlength="50">
-    <input id="assignee" [(ngModel)]="assignee" placeholder="{{assignee}}" minlength="4" maxlength="50">
+    <input id="description" [(ngModel)]="topic.description" placeholder="{{topic.description}}" minlength="4" maxlength="200">
+    <h3>Assignee</h3>
+    <select [(ngModel)]="topic.assigneeId">
+      <option *ngFor="let member of members" [ngValue]="member.id">
+        {{ member.name }}
+      </option>
+    </select>
     <button (click)="updateTopic()">Save</button>
   </div>
   <button (click)="deleteTopic()">Delete</button>

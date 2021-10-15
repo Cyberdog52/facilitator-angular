@@ -13,6 +13,7 @@ import { Member } from 'src/model/member/member';
 export class TopicDetailComponent implements OnInit {
   topic?: Topic;
   assignee?: Member;
+  members: Member[] = [];
   editing: boolean = false;
 
   constructor(
@@ -24,11 +25,16 @@ export class TopicDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTopic();
+    this.getMembers();
   }
 
   getTopic(){
     const id = this.route.snapshot.paramMap.get('id') as string;
     this.topicService.getTopic(id).subscribe(topic => this.getAssignee(topic));
+  }
+
+  getMembers(){
+    this.memberService.getMembers().subscribe(members => this.members = members);
   }
 
   getAssignee(topic: Topic){
