@@ -23,7 +23,7 @@ export class MeetingsComponent implements OnInit {
   }
 
   addMeeting(){
-    const newMeeting = { name: 'New Meeting', role: 'unassigned' };
-    this.meetingService.createMeeting(newMeeting);
+    const newMeeting = { timeInMillis: Date.now() };
+    this.meetingService.createMeeting(newMeeting).subscribe(() => this.getMeetings());
   }
 }

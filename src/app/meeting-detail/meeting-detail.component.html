@@ -1,1 +1,30 @@
-<p>meeting-detail works!</p>
+<div *ngIf='meeting'>
+  <div *ngIf='!editing'>
+    <h2>Teammeeting {{meeting.timeInMillis | date:'medium'}}</h2>
+
+    <h3 *ngIf='game'>Game</h3>
+    <p *ngIf='game'>{{game.title}}</p>
+
+    <h3 *ngIf='room'>Room</h3>
+    <p *ngIf='room'>{{room.name}}</p>
+
+    <h3>Topics</h3>
+    <ol>
+      <li *ngFor="let topic of topics" >{{topic.title}}</li>
+    </ol>
+    <button (click)="edit()">Edit</button>
+  </div>
+  <div *ngIf='editing'>
+    <input id="timeInMillis" [(ngModel)]="meeting.timeInMillis" placeholder="{{meeting.timeInMillis | date:'medium'}}" minlength="4" maxlength="50">
+    <!--
+      <input id="gameTitle" [(ngModel)]="game.title" placeholder="{{game.title}}" minlength="4" maxlength="50">
+
+      TODO: add useful way to edit date and dropdown for available games/rooms/topics
+    -->
+    <button (click)="updateMeeting()">Save</button>
+  </div>
+  <button (click)="deleteMeeting()">Delete</button>
+</div>
+<div *ngIf='!meeting'>
+  <h2>There is no meeting with this ID</h2>
+</div>
