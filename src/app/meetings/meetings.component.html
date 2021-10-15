@@ -3,7 +3,7 @@
   <ul class="meetings">
     <li *ngFor="let meeting of meetings" >
       <a routerLink="/meeting/{{meeting.id}}">
-        {{meeting.timeInMillis}}
+        {{meeting.timeInMillis | date:'medium'}}
       </a>
     </li>
   </ul>
