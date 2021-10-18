@@ -18,7 +18,7 @@ export class GameService {
   }
 
   createGame(game: any): Observable<any> {
-    return this.http.post(this.gamesURL, game);
+    return this.http.post(this.gamesURL, game, {responseType: 'text'});
   }
 
   getGame(id: string): Observable<Game> {
