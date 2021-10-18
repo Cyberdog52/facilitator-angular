@@ -15,7 +15,7 @@
     <button (click)="edit()">Edit</button>
   </div>
   <div *ngIf='editing'>
-    <input type="date" [ngModel]="meetingDate | date:'dd.MM.yyyy'" (ngModelChange)="setMeetingDate($event)"/>
+    <input type="date" [ngModel]="meetingDate | date:'yyyy-MM-dd'" (ngModelChange)="setMeetingDate($event)"/>
     <input type="time" [ngModel]="meetingTime | date: 'HH:mm'" (ngModelChange)="setMeetingTime($event)"/>
     <!--
       <input id="gameTitle" [(ngModel)]="game.title" placeholder="{{game.title}}" minlength="4" maxlength="50">
