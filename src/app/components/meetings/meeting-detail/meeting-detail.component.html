@@ -1,6 +1,6 @@
 <div *ngIf='meeting'>
   <div *ngIf='!editing'>
-    <h2>Teammeeting {{meeting.timeInMillis | date:'medium'}}</h2>
+    <h2>Teammeeting {{meeting.timeInMillis | date:'dd.MM.y, HH:mm'}}</h2>
 
     <h3 *ngIf='game'>Game</h3>
     <p *ngIf='game'>{{game.title}}</p>
@@ -10,12 +10,13 @@
 
     <h3>Topics</h3>
     <ol>
-      <li *ngFor="let topic of topics" >{{topic.title}}</li>
+      <li *ngFor="let topic of topics">{{topic.title}}</li>
     </ol>
     <button (click)="edit()">Edit</button>
   </div>
   <div *ngIf='editing'>
-    <input id="timeInMillis" [(ngModel)]="meeting.timeInMillis" placeholder="{{meeting.timeInMillis | date:'medium'}}" minlength="4" maxlength="50">
+    <input type="date" [ngModel]="meetingDate | date:'dd.MM.yyyy'" (ngModelChange)="setMeetingDate($event)"/>
+    <input type="time" [ngModel]="meetingTime | date: 'HH:mm'" (ngModelChange)="setMeetingTime($event)"/>
     <!--
       <input id="gameTitle" [(ngModel)]="game.title" placeholder="{{game.title}}" minlength="4" maxlength="50">
 
@@ -36,8 +37,8 @@
     </select>
 
     <h3>Topics</h3>
-    <div *ngIf='meeting.topicIds' >
-      <select *ngFor="let t of topics"  [(ngModel)]="meeting.topicIds[topics.indexOf(t)]">
+    <div *ngIf='meeting.topicIds'>
+      <select *ngFor="let t of topics" [(ngModel)]="meeting.topicIds[topics.indexOf(t)]">
         <option *ngFor="let topic of allTopics" [ngValue]="topic.id">
           {{ topic.title }}
         </option>
