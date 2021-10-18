@@ -18,6 +18,8 @@ import {MeetingDetailComponent} from './components/meetings/meeting-detail/meeti
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatSelectModule} from "@angular/material/select";
+import {MatOptionModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

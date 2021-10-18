@@ -8,7 +8,13 @@
   <div *ngIf='editing'>
     <input id="name" [(ngModel)]="member.name" placeholder="{{member.name}}" minlength="4" maxlength="50">
     <h3>Role</h3>
-    <input id="role" [(ngModel)]="member.role" placeholder="{{member.role}}" minlength="4" maxlength="50">
+    <mat-form-field appearance="outline">
+      <mat-select [(value)]="member.role">
+        <mat-option value="HCU">HCU</mat-option>
+        <mat-option value="TL">TL</mat-option>
+        <mat-option value="MEMBER">MEMBER</mat-option>
+      </mat-select>
+    </mat-form-field>
     <button (click)="updateMember()">Save</button>
   </div>
   <button (click)="deleteMember()">Delete</button>
