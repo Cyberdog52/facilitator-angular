@@ -1,10 +1,17 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/meetings">Meetings</a>
-  <a routerLink="/members">Members</a>
-  <a routerLink="/rooms">Rooms</a>
-  <a routerLink="/games">Games</a>
-  <a routerLink="/topics">Topics</a>
+<mat-toolbar color="primary">
+  <span>{{title}}</span>
+</mat-toolbar>
+<nav mat-tab-nav-bar color="primary">
+  <a mat-tab-link *ngFor="let link of links"
+     (click)="activeLink = link.name"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive"
+     [routerLink]="link.link"
+  > {{link.name}} </a>
 </nav>
 <router-outlet></router-outlet>
+
+
+
+
+
