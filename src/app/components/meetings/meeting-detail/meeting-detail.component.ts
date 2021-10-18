@@ -56,6 +56,7 @@ export class MeetingDetailComponent implements OnInit {
   getComponents(meeting: Meeting) {
     this.meeting = meeting;
     this.meetingDate = this.meeting?.timeInMillis ? new Date(this.meeting.timeInMillis) : new Date();
+    this.meetingTime = this.meeting?.timeInMillis ? new Date(this.meeting.timeInMillis) : new Date();
     this.gameService.getGame(meeting.gameId as string).subscribe(game => this.game = game);
     this.roomService.getRoom(meeting.roomId as string).subscribe(room => this.room = room);
     for (let topicId in meeting.topicIds) {
