@@ -3,7 +3,7 @@
   <ul class="meetings">
     <li *ngFor="let meeting of meetings" >
       <a routerLink="/meeting/{{meeting.id}}">
-        {{meeting.timeInMillis | date:'medium'}}
+        {{meeting.timeInMillis | date:'dd.MM.y, HH:mm'}} Uhr
       </a>
     </li>
   </ul>
