@@ -18,7 +18,7 @@ export class MemberService {
   }
 
   createMember(member: any): Observable<any> {
-    return this.http.post(this.membersURL, member);
+    return this.http.post(this.membersURL, member, {responseType: 'text'});
   }
 
   getMember(id: string): Observable<Member> {

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TopicService } from '../../../services/http/topic.service';
-import { Topic } from '../../../model/topic/topic';
-import { MemberService } from '../../../services/http/member.service';
-import { Member } from 'src/app/model/member/member';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {TopicService} from '../../../services/http/topic.service';
+import {Topic} from '../../../model/topic/topic';
+import {MemberService} from '../../../services/http/member.service';
+import {Member} from 'src/app/model/member/member';
 
 @Component({
   selector: 'app-topic-detail',
@@ -21,38 +21,40 @@ export class TopicDetailComponent implements OnInit {
     private router: Router,
     private topicService: TopicService,
     private memberService: MemberService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.getTopic();
     this.getMembers();
   }
 
-  getTopic(){
+  getTopic() {
     const id = this.route.snapshot.paramMap.get('id') as string;
+    this.editing = this.route.snapshot.paramMap.get('editing') == "true";
     this.topicService.getTopic(id).subscribe(topic => this.getAssignee(topic));
   }
 
-  getMembers(){
+  getMembers() {
     this.memberService.getMembers().subscribe(members => this.members = members);
   }
 
-  getAssignee(topic: Topic){
+  getAssignee(topic: Topic) {
     this.topic = topic;
     this.memberService.getMember(topic.assigneeId).subscribe(member => this.assignee = member);
   }
 
-  edit(){
+  edit() {
     this.editing = true;
   }
 
-  updateTopic(){
+  updateTopic() {
     this.editing = false;
     const updatedTopic = this.topic as Topic;
     this.topicService.updateTopic(updatedTopic.id, updatedTopic).subscribe(() => this.getTopic());
   }
 
-  deleteTopic(){
+  deleteTopic() {
     this.topicService.deleteTopic((this.topic as Topic).id).subscribe(() => this.router.navigateByUrl("/topics"));
   }
 }

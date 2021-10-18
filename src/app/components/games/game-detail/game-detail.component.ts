@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { GameService } from '../../../services/http/game.service';
-import { Game } from '../../../model/game/game';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {GameService} from '../../../services/http/game.service';
+import {Game} from '../../../model/game/game';
 
 @Component({
   selector: 'app-game-detail',
@@ -16,28 +16,30 @@ export class GameDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private gameService: GameService
-    ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.getGame();
   }
 
-  getGame(){
+  getGame() {
     const id = this.route.snapshot.paramMap.get('id') as string;
+    this.editing = this.route.snapshot.paramMap.get('editing') == "true";
     this.gameService.getGame(id).subscribe(game => this.game = game);
   }
 
-  edit(){
+  edit() {
     this.editing = true;
   }
 
-  updateGame(){
+  updateGame() {
     this.editing = false;
     const updatedGame = this.game as Game;
     this.gameService.updateGame(updatedGame.id, updatedGame).subscribe(() => this.getGame());
   }
 
-  deleteGame(){
+  deleteGame() {
     this.gameService.deleteGame((this.game as Game).id).subscribe(() => this.router.navigateByUrl("/games"));
   }
 }
