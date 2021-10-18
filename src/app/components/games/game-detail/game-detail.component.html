@@ -1,8 +1,8 @@
 <div *ngIf='game'>
   <div *ngIf='!editing'>
     <h2>{{game.title}}</h2>
-    <h3>{{game.uri}}</h3>
     <p>{{game.description}}</p>
+    <a href="{{game.uri}}">{{game.uri}}</a>
     <button (click)="edit()">Edit</button>
   </div>
   <div *ngIf='editing'>
