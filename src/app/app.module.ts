@@ -4,17 +4,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { MembersComponent } from './members/members.component';
-import { GamesComponent } from './games/games.component';
-import { MeetingsComponent } from './meetings/meetings.component';
-import { RoomsComponent } from './rooms/rooms.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { MemberDetailComponent } from './member-detail/member-detail.component';
-import { TopicsComponent } from './topics/topics.component';
-import { RoomDetailComponent } from './room-detail/room-detail.component';
-import { TopicDetailComponent } from './topic-detail/topic-detail.component';
-import { GameDetailComponent } from './game-detail/game-detail.component';
-import { MeetingDetailComponent } from './meeting-detail/meeting-detail.component';
+import { MembersComponent } from './components/members/members.component';
+import { GamesComponent } from './components/games/games.component';
+import { MeetingsComponent } from './components/meetings/meetings.component';
+import { RoomsComponent } from './components/rooms/rooms.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MemberDetailComponent } from './components/members/member-detail/member-detail.component';
+import { TopicsComponent } from './components/topics/topics.component';
+import { RoomDetailComponent } from './components/rooms/room-detail/room-detail.component';
+import { TopicDetailComponent } from './components/topics/topic-detail/topic-detail.component';
+import { GameDetailComponent } from './components/games/game-detail/game-detail.component';
+import { MeetingDetailComponent } from './components/meetings/meeting-detail/meeting-detail.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({

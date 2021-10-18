@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TopicService } from '../topics/topic.service';
-import { Topic } from '../../model/topic/topic';
-import { MemberService } from '../members/member.service';
-import { Member } from 'src/model/member/member';
+import { TopicService } from '../../../services/http/topic.service';
+import { Topic } from '../../../model/topic/topic';
+import { MemberService } from '../../../services/http/member.service';
+import { Member } from 'src/app/model/member/member';
 
 @Component({
   selector: 'app-topic-detail',

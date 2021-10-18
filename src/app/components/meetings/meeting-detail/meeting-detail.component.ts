@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MeetingService } from '../meetings/meeting.service';
-import { Meeting } from '../../model/meeting/meeting';
-import { Game } from 'src/model/game/game';
-import { Topic } from 'src/model/topic/topic';
-import { Room } from 'src/model/room/room';
-import { GameService } from '../games/game.service';
-import { RoomService } from '../rooms/room.service';
-import { TopicService } from '../topics/topic.service';
+import { MeetingService } from '../../../services/http/meeting.service';
+import { Meeting } from '../../../model/meeting/meeting';
+import { Game } from 'src/app/model/game/game';
+import { Topic } from 'src/app/model/topic/topic';
+import { Room } from 'src/app/model/room/room';
+import { GameService } from '../../../services/http/game.service';
+import { RoomService } from '../../../services/http/room.service';
+import { TopicService } from '../../../services/http/topic.service';
 
 @Component({
   selector: 'app-meeting-detail',

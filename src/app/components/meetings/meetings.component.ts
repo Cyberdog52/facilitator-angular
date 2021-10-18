@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Meeting } from 'src/model/meeting/meeting';
-import { MeetingService } from './meeting.service';
+import { Meeting } from 'src/app/model/meeting/meeting';
+import { MeetingService } from '../../services/http/meeting.service';
 
 @Component({
   selector: 'app-meetings',
