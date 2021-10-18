@@ -2,10 +2,13 @@
   <div *ngIf='!editing'>
     <h2>{{game.title}}</h2>
     <h3>{{game.uri}}</h3>
+    <p>{{game.description}}</p>
     <button (click)="edit()">Edit</button>
   </div>
   <div *ngIf='editing'>
     <input id="title" [(ngModel)]="game.title" placeholder="{{game.title}}" minlength="4" maxlength="50">
+    <input id="description" [(ngModel)]="game.description" placeholder="{{game.description}}" minlength="4"
+           maxlength="200">
     <input id="uri" [(ngModel)]="game.uri" placeholder="{{game.uri}}" minlength="4" maxlength="50">
     <button (click)="updateGame()">Save</button>
   </div>
