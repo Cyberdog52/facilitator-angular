@@ -46,9 +46,9 @@ import {MatTabsModule} from "@angular/material/tabs";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonToggleModule,
-    MemberEditorDropdown
+    //MemberEditorDropdown,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
     MatToolbarModule,
     MatIconModule,
     MatTabsModule
