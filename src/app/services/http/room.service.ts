@@ -2,11 +2,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Room} from '../../model/room/room';
+import {IRoomService} from "../../model/room/IRoomService";
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoomService {
+export class RoomService implements IRoomService {
 
   constructor(private http: HttpClient) {
   }

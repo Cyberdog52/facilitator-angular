@@ -2,11 +2,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Meeting} from '../../model/meeting/meeting';
+import {IMeetingService} from "../../model/meeting/IMeetingService";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MeetingService {
+export class MeetingService implements IMeetingService {
 
   constructor(private http: HttpClient) {
   }

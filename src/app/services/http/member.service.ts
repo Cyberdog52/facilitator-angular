@@ -2,11 +2,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Member} from '../../model/member/member';
+import {IMemberService} from "../../model/member/IMemberService";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MemberService {
+export class MemberService implements IMemberService {
 
   constructor(private http: HttpClient) {
   }

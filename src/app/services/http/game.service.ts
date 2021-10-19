@@ -2,11 +2,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Game} from '../../model/game/game';
+import {IGameService} from "../../model/game/IGameService";
 
 @Injectable({
   providedIn: 'root'
 })
-export class GameService {
+export class GameService implements IGameService {
 
   constructor(private http: HttpClient) {
   }
