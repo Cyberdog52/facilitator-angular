@@ -19,7 +19,8 @@
         }
       ],
       "scripts": {
-        "test-setup": "npm test"
+        "test-setup": "npm install",
+        "test": "npm test"
       }
     }
   },
