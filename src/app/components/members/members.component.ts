@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MemberService} from '../../services/http/member.service';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Member} from '../../model/member/member';
 import {Router} from "@angular/router";
+import {IMemberService} from "../../model/member/IMemberService";
 
 @Component({
   selector: 'app-members',
@@ -13,7 +13,7 @@ export class MembersComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private memberService: MemberService
+    @Inject('IMemberService') private memberService: IMemberService
   ) {
   }
 

@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TopicService} from '../../../services/http/topic.service';
 import {Topic} from '../../../model/topic/topic';
-import {MemberService} from '../../../services/http/member.service';
 import {Member} from 'src/app/model/member/member';
+import {ITopicService} from "../../../model/topic/ITopicService";
+import {IMemberService} from "../../../model/member/IMemberService";
 
 @Component({
   selector: 'app-topic-detail',
@@ -19,8 +19,8 @@ export class TopicDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private topicService: TopicService,
-    private memberService: MemberService
+    @Inject('ITopicService') private topicService: ITopicService,
+    @Inject('IMemberService') private memberService: IMemberService
   ) {
   }
 

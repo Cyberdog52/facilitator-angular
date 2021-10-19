@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {RoomService} from '../../../services/http/room.service';
 import {Room} from '../../../model/room/room';
+import {IRoomService} from "../../../model/room/IRoomService";
 
 @Component({
   selector: 'app-room-detail',
@@ -15,7 +15,7 @@ export class RoomDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private roomService: RoomService
+    @Inject('IRoomService') private roomService: IRoomService
   ) {
   }
 

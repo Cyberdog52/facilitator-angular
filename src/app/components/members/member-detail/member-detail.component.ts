@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MemberService} from '../../../services/http/member.service';
 import {Member} from '../../../model/member/member';
+import {IMemberService} from "../../../model/member/IMemberService";
 
 @Component({
   selector: 'app-member-detail',
@@ -15,7 +15,7 @@ export class MemberDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private memberService: MemberService
+    @Inject('IMemberService') private memberService: IMemberService
   ) {
   }
 

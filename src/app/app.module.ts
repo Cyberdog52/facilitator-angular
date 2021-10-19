@@ -23,6 +23,7 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTabsModule} from "@angular/material/tabs";
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -53,8 +54,24 @@ import {MatTabsModule} from "@angular/material/tabs";
     MatIconModule,
     MatTabsModule
   ],
-  providers: [],
+  providers: [{
+    provide: 'IGameService',
+    useClass: environment.gameService
+  }, {
+    provide: 'IMeetingService',
+    useClass: environment.meetingService
+  }, {
+    provide: 'IMemberService',
+    useClass: environment.memberService
+  }, {
+    provide: 'IRoomService',
+    useClass: environment.roomService
+  }, {
+    provide: 'ITopicService',
+    useClass: environment.topicService
+  }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
