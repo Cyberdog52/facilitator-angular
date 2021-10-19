@@ -115,7 +115,6 @@ export class MeetingDetailComponent implements OnInit {
   removeTopic(topic: Topic) {
     const index = this.topics.indexOf(topic);
     const length = this.topics.length;
-    this.topics = [...this.topics.slice(0, index),
-      ...this.topics.slice(index + 1, length)];
+    this.topics = this.topics.splice(index, 1);
   }
 }
