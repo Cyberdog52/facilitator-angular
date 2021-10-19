@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {GameService} from '../../../services/http/game.service';
 import {Game} from '../../../model/game/game';
+import {IGameService} from "../../../model/game/IGameService";
 
 @Component({
   selector: 'app-game-detail',
@@ -15,7 +15,7 @@ export class GameDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private gameService: GameService
+    @Inject('IGameService') private gameService: IGameService
   ) {
   }
 

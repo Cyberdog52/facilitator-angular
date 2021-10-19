@@ -1,7 +1,7 @@
-import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Member} from '../../model/member/member';
+import {MEMBERS} from "../../model/member/mock-members";
 import {IMemberService} from "../../model/member/IMemberService";
 
 @Injectable({
@@ -9,28 +9,32 @@ import {IMemberService} from "../../model/member/IMemberService";
 })
 export class MemberService implements IMemberService {
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
-  private membersURL = 'https://lambda-facilitator-backend.herokuapp.com/api/members';
-
   getMembers(): Observable<Member[]> {
-    return this.http.get<Member[]>(this.membersURL);
+    return of(MEMBERS);
   }
 
   createMember(member: any): Observable<any> {
-    return this.http.post(this.membersURL, member, {responseType: 'text'});
+    member.id = MEMBERS.length + 1;
+    MEMBERS.push(member);
+    return of(MEMBERS.length);
   }
 
   getMember(id: string): Observable<Member> {
-    return this.http.get<Member>(this.membersURL + '/' + id);
+    return of(MEMBERS.find(x => x.id == id) as Member);
   }
 
   updateMember(member: Member): Observable<any> {
-    return this.http.put(this.membersURL, member);
+    const index = MEMBERS.findIndex(x => x.id == member.id);
+    MEMBERS[index] = member;
+    return of();
   }
 
   deleteMember(id: string): Observable<any> {
-    return this.http.delete(this.membersURL + '/' + id);
+    const index = MEMBERS.findIndex(x => x.id == id);
+    MEMBERS.splice(index, 1);
+    return of(0);
   }
 }

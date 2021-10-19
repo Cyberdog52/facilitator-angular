@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MeetingService} from '../../../services/http/meeting.service';
 import {Meeting} from '../../../model/meeting/meeting';
 import {Game} from 'src/app/model/game/game';
 import {Topic} from 'src/app/model/topic/topic';
 import {Room} from 'src/app/model/room/room';
-import {GameService} from '../../../services/http/game.service';
-import {RoomService} from '../../../services/http/room.service';
-import {TopicService} from '../../../services/http/topic.service';
+import {IGameService} from "../../../model/game/IGameService";
+import {ITopicService} from "../../../model/topic/ITopicService";
+import {IRoomService} from "../../../model/room/IRoomService";
+import {IMeetingService} from "../../../model/meeting/IMeetingService";
 
 @Component({
   selector: 'app-meeting-detail',
@@ -32,10 +32,10 @@ export class MeetingDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private meetingService: MeetingService,
-    private gameService: GameService,
-    private roomService: RoomService,
-    private topicService: TopicService
+    @Inject('IMeetingService') private meetingService: IMeetingService,
+    @Inject('IRoomService') private roomService: IRoomService,
+    @Inject('ITopicService') private topicService: ITopicService,
+    @Inject('IGameService') private gameService: IGameService
   ) {
   }
 

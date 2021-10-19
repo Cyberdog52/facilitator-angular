@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Topic} from 'src/app/model/topic/topic';
-import {TopicService} from '../../services/http/topic.service';
 import {Router} from "@angular/router";
+import {ITopicService} from "../../model/topic/ITopicService";
 
 @Component({
   selector: 'app-topics',
@@ -12,8 +12,8 @@ export class TopicsComponent implements OnInit {
   topics: Topic[] = [];
 
   constructor(
-    private topicService: TopicService,
     private router: Router,
+    @Inject('ITopicService') private topicService: ITopicService
   ) {
   }
 
