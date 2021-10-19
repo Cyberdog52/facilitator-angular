@@ -4,7 +4,7 @@ import {TopicDetailComponent} from './topic-detail.component';
 import {ActivatedRoute} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {TopicService} from "../../../services/http/topic.service";
+import {environment} from "../../../../environments/environment";
 
 describe('TopicDetailComponent', () => {
   let component: TopicDetailComponent;
@@ -27,7 +27,15 @@ describe('TopicDetailComponent', () => {
                 }
               }
             }
-          }, TopicService
+          },
+          {
+            provide: 'IMemberService',
+            useClass: environment.memberService
+          },
+          {
+            provide: 'ITopicService',
+            useClass: environment.topicService
+          }
         ]
     })
       .compileComponents();

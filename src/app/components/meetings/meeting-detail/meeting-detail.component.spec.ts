@@ -4,7 +4,7 @@ import {MeetingDetailComponent} from './meeting-detail.component';
 import {ActivatedRoute} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {MeetingService} from "../../../services/http/meeting.service";
+import {environment} from "../../../../environments/environment";
 
 describe('MeetingDetailComponent', () => {
   let component: MeetingDetailComponent;
@@ -28,7 +28,22 @@ describe('MeetingDetailComponent', () => {
               }
             }
           },
-          MeetingService
+          {
+            provide: 'IMeetingService',
+            useClass: environment.meetingService
+          },
+          {
+            provide: 'IRoomService',
+            useClass: environment.roomService
+          },
+          {
+            provide: 'ITopicService',
+            useClass: environment.topicService
+          },
+          {
+            provide: 'IGameService',
+            useClass: environment.gameService
+          }
         ]
     })
       .compileComponents();

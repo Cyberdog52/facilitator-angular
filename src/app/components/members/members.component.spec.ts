@@ -2,8 +2,8 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MembersComponent} from './members.component';
 import {RouterTestingModule} from "@angular/router/testing";
-import {MemberService} from "../../services/http/member.service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {environment} from "../../../environments/environment";
 
 describe('MembersComponent', () => {
   let component: MembersComponent;
@@ -13,7 +13,10 @@ describe('MembersComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [MembersComponent],
       imports: [RouterTestingModule, HttpClientTestingModule],
-      providers: [MemberService]
+      providers: [{
+        provide: 'IMemberService',
+        useClass: environment.memberService
+      }]
     })
       .compileComponents();
   });

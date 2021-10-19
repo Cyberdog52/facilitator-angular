@@ -4,7 +4,7 @@ import {RoomDetailComponent} from './room-detail.component';
 import {ActivatedRoute} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {RoomService} from "../../../services/http/room.service";
+import {environment} from "../../../../environments/environment";
 
 describe('RoomDetailComponent', () => {
   let component: RoomDetailComponent;
@@ -28,7 +28,10 @@ describe('RoomDetailComponent', () => {
               }
             }
           },
-          RoomService
+          {
+            provide: 'IRoomService',
+            useClass: environment.roomService
+          }
         ]
     })
       .compileComponents();

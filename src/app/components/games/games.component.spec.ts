@@ -2,8 +2,9 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {GamesComponent} from './games.component';
 import {RouterTestingModule} from "@angular/router/testing";
-import {GameService} from "../../services/http/game.service";
+import {IGameService} from "../../model/game/IGameService";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {environment} from "../../../environments/environment";
 
 describe('GamesComponent', () => {
   let component: GamesComponent;
@@ -13,7 +14,10 @@ describe('GamesComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [GamesComponent],
       imports: [RouterTestingModule, HttpClientTestingModule],
-      providers: [GameService]
+      providers: [{
+        provide: 'IGameService',
+        useClass: environment.gameService
+      }]
     })
       .compileComponents();
   });

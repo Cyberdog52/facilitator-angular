@@ -1,9 +1,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RoomsComponent} from './rooms.component';
-import {RoomService} from "../../services/http/room.service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {RouterTestingModule} from "@angular/router/testing";
+import {environment} from "../../../environments/environment";
 
 describe('RoomsComponent', () => {
   let component: RoomsComponent;
@@ -13,7 +13,10 @@ describe('RoomsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [RoomsComponent],
       imports: [RouterTestingModule, HttpClientTestingModule],
-      providers: [RoomService]
+      providers: [{
+        provide: 'IRoomService',
+        useClass: environment.roomService
+      }]
     })
       .compileComponents();
   });
