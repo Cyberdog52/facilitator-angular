@@ -29,7 +29,7 @@ export class MeetingService implements IMeetingService {
   updateMeeting(meeting: Meeting): Observable<any> {
     const index = MEETINGS.findIndex(x => x.id == meeting.id);
     MEETINGS[index] = meeting;
-    return of();
+    return of({});
   }
 
   deleteMeeting(id: string): Observable<any> {

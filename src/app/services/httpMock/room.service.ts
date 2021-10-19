@@ -29,7 +29,7 @@ export class RoomService implements IRoomService {
   updateRoom(room: Room): Observable<any> {
     const index = ROOMS.findIndex(x => x.id == room.id);
     ROOMS[index] = room;
-    return of();
+    return of({});
   }
 
   deleteRoom(id: string): Observable<any> {

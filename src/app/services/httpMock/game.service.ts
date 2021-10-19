@@ -29,7 +29,7 @@ export class GameService implements IGameService {
   updateGame(game: Game): Observable<any> {
     const index = GAMES.findIndex(x => x.id == game.id);
     GAMES[index] = game;
-    return of();
+    return of({});
   }
 
   deleteGame(id: string): Observable<any> {
