@@ -57,6 +57,7 @@ export class MeetingDetailComponent implements OnInit {
   }
 
   getComponents(meeting: Meeting) {
+    this.topics = [];
     this.meeting = meeting;
     this.meetingDate = this.meeting?.timeInMillis ? new Date(this.meeting.timeInMillis) : new Date();
     this.meetingTime = this.meeting?.timeInMillis ? new Date(this.meeting.timeInMillis) : new Date();
