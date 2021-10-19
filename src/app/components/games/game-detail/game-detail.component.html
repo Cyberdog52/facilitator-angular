@@ -8,10 +8,11 @@
     <mat-card-content>
       <textarea matInput [disabled]="!editing" (change)="updateGame()" [(ngModel)]="game.description"></textarea>
     </mat-card-content>
-    <input matInput [hidden]="!editing" (change)="updateGame()" [(ngModel)]="game.uri" placeholder="Title">
+    <input matInput [hidden]="!editing" (change)="updateGame()" [(ngModel)]="game.uri">
     <a href="{{game.uri}}">
       <button mat-button>
         <mat-icon aria-hidden="false">open_in_new</mat-icon>
+        <p>Open Website</p>
       </button>
     </a>
     <mat-card-actions align="end">
