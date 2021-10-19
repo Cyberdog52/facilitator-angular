@@ -26,8 +26,8 @@ export class TopicService implements ITopicService {
     return of(TOPICS.find(x => x.id == id) as Topic);
   }
 
-  updateTopic(id: string, topic: Topic): Observable<any> {
-    const index = TOPICS.findIndex(x => x.id == id);
+  updateTopic(topic: Topic): Observable<any> {
+    const index = TOPICS.findIndex(x => x.id == topic.id);
     TOPICS[index] = topic;
     return of();
   }

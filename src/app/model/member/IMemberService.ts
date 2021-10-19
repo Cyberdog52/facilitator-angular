@@ -8,7 +8,7 @@ export interface IMemberService {
 
   getMember(id: string): Observable<Member>;
 
-  updateMember(id: string, member: Member): Observable<any>;
+  updateMember(member: Member): Observable<any>;
 
   deleteMember(id: string): Observable<any>;
 }

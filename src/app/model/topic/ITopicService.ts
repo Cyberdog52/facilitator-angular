@@ -8,7 +8,7 @@ export interface ITopicService {
 
   getTopic(id: string): Observable<Topic>;
 
-  updateTopic(id: string, topic: Topic): Observable<any>;
+  updateTopic(topic: Topic): Observable<any>;
 
   deleteTopic(id: string): Observable<any>;
 }

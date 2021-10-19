@@ -26,8 +26,8 @@ export class MemberService implements IMemberService {
     return of(MEMBERS.find(x => x.id == id) as Member);
   }
 
-  updateMember(id: string, member: Member): Observable<any> {
-    const index = MEMBERS.findIndex(x => x.id == id);
+  updateMember(member: Member): Observable<any> {
+    const index = MEMBERS.findIndex(x => x.id == member.id);
     MEMBERS[index] = member;
     return of();
   }

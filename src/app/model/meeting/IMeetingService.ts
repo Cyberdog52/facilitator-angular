@@ -8,7 +8,7 @@ export interface IMeetingService {
 
   getMeeting(id: string): Observable<Meeting>;
 
-  updateMeeting(id: string, meeting: Meeting): Observable<any>;
+  updateMeeting(meeting: Meeting): Observable<any>;
 
   deleteMeeting(id: string): Observable<any>;
 }

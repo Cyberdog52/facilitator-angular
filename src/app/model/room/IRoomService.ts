@@ -8,7 +8,7 @@ export interface IRoomService {
 
   getRoom(id: string): Observable<Room>;
 
-  updateRoom(id: string, room: Room): Observable<any>;
+  updateRoom(room: Room): Observable<any>;
 
   deleteRoom(id: string): Observable<any>;
 }

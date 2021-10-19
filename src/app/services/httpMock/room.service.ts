@@ -26,8 +26,8 @@ export class RoomService implements IRoomService {
     return of(ROOMS.find(x => x.id == id) as Room);
   }
 
-  updateRoom(id: string, room: Room): Observable<any> {
-    const index = ROOMS.findIndex(x => x.id == id);
+  updateRoom(room: Room): Observable<any> {
+    const index = ROOMS.findIndex(x => x.id == room.id);
     ROOMS[index] = room;
     return of();
   }

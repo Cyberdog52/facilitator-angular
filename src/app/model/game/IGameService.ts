@@ -8,7 +8,7 @@ export interface IGameService {
 
   getGame(id: string): Observable<Game>;
 
-  updateGame(id: string, game: Game): Observable<any>;
+  updateGame(game: Game): Observable<any>;
 
   deleteGame(id: string): Observable<any>;
 }

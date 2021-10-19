@@ -26,8 +26,8 @@ export class MeetingService implements IMeetingService {
     return of(MEETINGS.find(x => x.id == id) as Meeting);
   }
 
-  updateMeeting(id: string, meeting: Meeting): Observable<any> {
-    const index = MEETINGS.findIndex(x => x.id == id);
+  updateMeeting(meeting: Meeting): Observable<any> {
+    const index = MEETINGS.findIndex(x => x.id == meeting.id);
     MEETINGS[index] = meeting;
     return of();
   }

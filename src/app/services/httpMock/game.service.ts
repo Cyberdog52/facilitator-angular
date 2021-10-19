@@ -26,8 +26,8 @@ export class GameService implements IGameService {
     return of(GAMES.find(x => x.id == id) as Game);
   }
 
-  updateGame(id: string, game: Game): Observable<any> {
-    const index = GAMES.findIndex(x => x.id == id);
+  updateGame(game: Game): Observable<any> {
+    const index = GAMES.findIndex(x => x.id == game.id);
     GAMES[index] = game;
     return of();
   }
