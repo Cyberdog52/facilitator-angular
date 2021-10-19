@@ -26,8 +26,8 @@ export class GameService implements IGameService {
     return this.http.get<Game>(this.gamesURL + '/' + id);
   }
 
-  updateGame(id: string, game: Game): Observable<any> {
-    return this.http.put(this.gamesURL + '/' + id, game);
+  updateGame(game: Game): Observable<any> {
+    return this.http.put(this.gamesURL, game);
   }
 
   deleteGame(id: string): Observable<any> {

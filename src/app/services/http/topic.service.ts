@@ -26,8 +26,8 @@ export class TopicService implements ITopicService {
     return this.http.get<Topic>(this.topicsURL + '/' + id);
   }
 
-  updateTopic(id: string, topic: Topic): Observable<any> {
-    return this.http.put(this.topicsURL + '/' + id, topic);
+  updateTopic(topic: Topic): Observable<any> {
+    return this.http.put(this.topicsURL, topic);
   }
 
   deleteTopic(id: string): Observable<any> {

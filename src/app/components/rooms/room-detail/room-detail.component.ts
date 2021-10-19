@@ -36,7 +36,7 @@ export class RoomDetailComponent implements OnInit {
   updateRoom() {
     this.editing = false;
     const updatedRoom = this.room as Room;
-    this.roomService.updateRoom(updatedRoom.id, updatedRoom).subscribe(() => this.getRoom());
+    this.roomService.updateRoom(updatedRoom).subscribe(() => this.getRoom());
   }
 
   deleteRoom() {

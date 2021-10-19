@@ -36,7 +36,7 @@ export class MemberDetailComponent implements OnInit {
   updateMember() {
     this.editing = false;
     const updatedMember = this.member as Member;
-    this.memberService.updateMember(updatedMember.id, updatedMember).subscribe(() => this.getMember());
+    this.memberService.updateMember(updatedMember).subscribe(() => this.getMember());
   }
 
   deleteMember() {

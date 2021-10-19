@@ -1,9 +1,35 @@
 {
-  "name": "facilitator-angular",
-  "scripts": {},
+  "addons": [
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
   "env": {
     "NODE_OPTIONS": {
       "required": true
+    }
+  },
+  "environments": {
+    "test": {
+      "buildpacks": [
+        {
+          "url": "heroku/nodejs"
+        },
+        {
+          "url": "heroku/google-chrome"
+        }
+      ],
+      "scripts": {
+        "test-setup": "npm install --only=dev",
+        "test": "npm test"
+      },
+      "env": {
+        "NODE_OPTIONS": {
+          "required": false
+        }
+      }
     }
   },
   "formation": {
@@ -11,11 +37,8 @@
       "quantity": 1
     }
   },
-  "addons": [],
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    }
-  ],
+  "name": "facilitator-angular",
+  "scripts": {
+  },
   "stack": "heroku-20"
 }

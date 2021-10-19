@@ -26,8 +26,8 @@ export class RoomService implements IRoomService {
     return this.http.get<Room>(this.roomsURL + '/' + id);
   }
 
-  updateRoom(id: string, room: Room): Observable<any> {
-    return this.http.put(this.roomsURL + '/' + id, room);
+  updateRoom(room: Room): Observable<any> {
+    return this.http.put(this.roomsURL, room);
   }
 
   deleteRoom(id: string): Observable<any> {
