@@ -33,7 +33,7 @@ export class MeetingDetailComponent implements OnInit {
     private meetingService: MeetingService,
     private gameService: GameService,
     private roomService: RoomService,
-    private topicService: TopicService,
+    private topicService: TopicService
   ) {
   }
 
@@ -44,6 +44,7 @@ export class MeetingDetailComponent implements OnInit {
 
   getMeeting() {
     const id = this.route.snapshot.paramMap.get('id') as string;
+    this.editing = this.route.snapshot.paramMap.get('editing') == "true";
     this.meetingService.getMeeting(id).subscribe(meeting => this.getComponents(meeting));
   }
 

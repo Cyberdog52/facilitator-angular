@@ -18,7 +18,7 @@ export class RoomService {
   }
 
   createRoom(room: any): Observable<any> {
-    return this.http.post(this.roomsURL, room);
+    return this.http.post(this.roomsURL, room, {responseType: 'text'});
   }
 
   getRoom(id: string): Observable<Room> {

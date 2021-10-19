@@ -18,7 +18,7 @@ export class MeetingService {
   }
 
   createMeeting(meeting: any): Observable<any> {
-    return this.http.post(this.meetingsURL, meeting);
+    return this.http.post(this.meetingsURL, meeting, {responseType: 'text'});
   }
 
   getMeeting(id: string): Observable<Meeting> {

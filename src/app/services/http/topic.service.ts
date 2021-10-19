@@ -18,7 +18,7 @@ export class TopicService {
   }
 
   createTopic(topic: any): Observable<any> {
-    return this.http.post(this.topicsURL, topic);
+    return this.http.post(this.topicsURL, topic, {responseType: 'text'});
   }
 
   getTopic(id: string): Observable<Topic> {
