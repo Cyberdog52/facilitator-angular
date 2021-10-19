@@ -1,62 +1,66 @@
 <div *ngIf='meeting'>
-  <div *ngIf='!editing'>
-    <h2>Teammeeting {{meeting.timeInMillis | date:'dd.MM.y, HH:mm'}}</h2>
+  <mat-card>
+    <mat-card-title>
+      Teammeeting am {{meeting.timeInMillis | date:'dd.MM.y, HH:mm'}}
+    </mat-card-title>
+    <mat-card-content>
+      <mat-form-field [hidden]="!editing">
+        <input matInput [hidden]="!editing" [disabled]="!editing" type="date"
+               [ngModel]="meetingDate | date:'yyyy-MM-dd'"
+               (ngModelChange)="setMeetingDate($event)"/>
+        <input matInput [hidden]="!editing" [disabled]="!editing" type="time" [ngModel]="meetingTime | date: 'HH:mm'"
+               (ngModelChange)="setMeetingTime($event)"/>
+      </mat-form-field>
 
-    <h3 *ngIf='game'>Game</h3>
-    <p *ngIf='game'>{{game.title}}</p>
+      <mat-card-title>Game</mat-card-title>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="meeting.gameId" [disabled]="!editing">
+          <mat-option *ngFor="let game of allGames" [value]="game.id">
+            {{ game.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <h3 *ngIf='room'>Room</h3>
-    <p *ngIf='room'>{{room.name}}</p>
+      <mat-card-title>Room</mat-card-title>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="meeting.roomId" [disabled]="!editing">
+          <mat-option *ngFor="let room of allRooms" [value]="room.id">
+            {{ room.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <h3>Topics</h3>
-    <ol>
-      <li *ngFor="let topic of topics">{{topic.title}}</li>
-    </ol>
-    <button (click)="edit()">Edit</button>
-  </div>
-  <div *ngIf='editing'>
-    <div>
-      <h3>Date & Time</h3>
-      <input id="meetingDateInput" type="date" [ngModel]="meetingDate | date:'yyyy-MM-dd'"
-             (ngModelChange)="setMeetingDate($event)"/>
-      <input id="meetingTimeInput" type="time" [ngModel]="meetingTime | date: 'HH:mm'"
-             (ngModelChange)="setMeetingTime($event)"/>
-
-      <h3>Game</h3>
-      <select [(ngModel)]="meeting.gameId">
-        <option *ngFor="let game of allGames" [ngValue]="game.id">
-          {{ game.title }}
-        </option>
-      </select>
-
-      <h3>Room</h3>
-      <select [(ngModel)]="meeting.roomId">
-        <option *ngFor="let room of allRooms" [ngValue]="room.id">
-          {{ room.name }}
-        </option>
-      </select>
-
-      <h3>Topics</h3>
-      <ol>
-        <li *ngFor="let topic of topics">
+      <mat-card-title>Topics</mat-card-title>
+      <mat-list>
+        <mat-list-item *ngFor="let topic of topics; index as i">
           {{topic.title}}
-          <button (click)="removeTopic(topic)">Remove Topic</button>
-        </li>
-      </ol>
+          <button mat-button (click)="removeTopic(i)">
+            <mat-icon aria-hidden="false">delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
 
       <mat-form-field appearance="outline">
-        <mat-select [(value)]="selectedTopic">
+        <mat-select [(value)]="selectedTopic" [disabled]="!editing">
           <mat-option *ngFor="let topicOption of allTopics" [value]="topicOption">
             {{ topicOption.title }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button (click)="addTopic()">Add Topic</button>
-    </div>
+      <button mat-button [disabled]="!editing" (click)="addTopic()">
+        <mat-icon aria-hidden="false">add</mat-icon>
+      </button>
 
-    <button (click)="updateMeeting()">Save Meeting</button>
-  </div>
-  <button (click)="deleteMeeting()">Delete</button>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button (click)="edit()">
+        <mat-icon aria-hidden="false">edit</mat-icon>
+      </button>
+      <button mat-button (click)="deleteMeeting()">
+        <mat-icon aria-hidden="false">delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 <div *ngIf='!meeting'>
   <h2>There is no meeting with this ID</h2>
