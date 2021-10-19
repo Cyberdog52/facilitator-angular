@@ -4,14 +4,27 @@
   "buildpacks": [
     {
       "url": "heroku/nodejs"
-    },
-    {
-      "url": "heroku/google-chrome"
     }
   ],
   "env": {
     "NODE_OPTIONS": {
       "required": true
+    }
+  },
+  "environments": {
+    "test": {
+      "buildpacks": [
+        {
+          "url": "heroku/nodejs"
+        },
+        {
+          "url": "heroku/google-chrome"
+        }
+      ],
+      "scripts": {
+        "test-setup": "npm install",
+        "test": "npm test"
+      }
     }
   },
   "formation": {
