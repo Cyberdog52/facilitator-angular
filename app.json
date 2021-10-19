@@ -22,7 +22,7 @@
         }
       ],
       "scripts": {
-        "test-setup": "npm install --only=dev",
+        "test-setup": "",
         "test": "npm test"
       },
       "env": {
