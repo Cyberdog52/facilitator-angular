@@ -20,7 +20,12 @@
         {
           "url": "heroku/nodejs"
         }
-      ]
+      ],
+      "env": {
+        "NODE_OPTIONS": {
+          "required": true
+        }
+      }
     }
   },
   "formation": {
