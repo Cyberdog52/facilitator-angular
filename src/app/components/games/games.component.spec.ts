@@ -1,6 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GamesComponent } from './games.component';
+import {GamesComponent} from './games.component';
+import {RouterTestingModule} from "@angular/router/testing";
+import {IGameService} from "../../model/game/IGameService";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {environment} from "../../../environments/environment";
 
 describe('GamesComponent', () => {
   let component: GamesComponent;
@@ -8,9 +12,14 @@ describe('GamesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GamesComponent ]
+      declarations: [GamesComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers: [{
+        provide: 'IGameService',
+        useClass: environment.gameService
+      }]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

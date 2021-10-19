@@ -29,7 +29,7 @@ export class TopicService implements ITopicService {
   updateTopic(topic: Topic): Observable<any> {
     const index = TOPICS.findIndex(x => x.id == topic.id);
     TOPICS[index] = topic;
-    return of();
+    return of({});
   }
 
   deleteTopic(id: string): Observable<any> {

@@ -57,6 +57,7 @@ export class MeetingDetailComponent implements OnInit {
   }
 
   getComponents(meeting: Meeting) {
+    this.topics = [];
     this.meeting = meeting;
     this.meetingDate = this.meeting?.timeInMillis ? new Date(this.meeting.timeInMillis) : new Date();
     this.meetingTime = this.meeting?.timeInMillis ? new Date(this.meeting.timeInMillis) : new Date();
@@ -114,7 +115,11 @@ export class MeetingDetailComponent implements OnInit {
 
   removeTopic(topic: Topic) {
     const index = this.topics.indexOf(topic);
-    const length = this.topics.length;
-    this.topics = this.topics.splice(index, 1);
+
+    if(index == -1) {
+      return;
+    }
+
+    this.topics.splice(index, 1);
   }
 }
