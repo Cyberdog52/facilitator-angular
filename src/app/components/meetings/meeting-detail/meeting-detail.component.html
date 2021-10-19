@@ -15,42 +15,46 @@
     <button (click)="edit()">Edit</button>
   </div>
   <div *ngIf='editing'>
-    <h3>Date & Time</h3>
-    <input id="meetingDateInput" type="date" [ngModel]="meetingDate | date:'yyyy-MM-dd'" (ngModelChange)="setMeetingDate($event)"/>
-    <input id="meetingTimeInput" type="time" [ngModel]="meetingTime | date: 'HH:mm'" (ngModelChange)="setMeetingTime($event)"/>
+    <div>
+      <h3>Date & Time</h3>
+      <input id="meetingDateInput" type="date" [ngModel]="meetingDate | date:'yyyy-MM-dd'"
+             (ngModelChange)="setMeetingDate($event)"/>
+      <input id="meetingTimeInput" type="time" [ngModel]="meetingTime | date: 'HH:mm'"
+             (ngModelChange)="setMeetingTime($event)"/>
 
-    <h3>Game</h3>
-    <select [(ngModel)]="meeting.gameId">
-      <option *ngFor="let game of allGames" [ngValue]="game.id">
-        {{ game.title }}
-      </option>
-    </select>
+      <h3>Game</h3>
+      <select [(ngModel)]="meeting.gameId">
+        <option *ngFor="let game of allGames" [ngValue]="game.id">
+          {{ game.title }}
+        </option>
+      </select>
 
-    <h3>Room</h3>
-    <select [(ngModel)]="meeting.roomId">
-      <option *ngFor="let room of allRooms" [ngValue]="room.id">
-        {{ room.name }}
-      </option>
-    </select>
+      <h3>Room</h3>
+      <select [(ngModel)]="meeting.roomId">
+        <option *ngFor="let room of allRooms" [ngValue]="room.id">
+          {{ room.name }}
+        </option>
+      </select>
 
-    <h3>Topics</h3>
-    <ol>
-      <li *ngFor="let topic of topics">
-        {{topic.title}}
-        <button (click)="removeTopic(topic)">Remove Topic</button>
-      </li>
-    </ol>
+      <h3>Topics</h3>
+      <ol>
+        <li *ngFor="let topic of topics">
+          {{topic.title}}
+          <button (click)="removeTopic(topic)">Remove Topic</button>
+        </li>
+      </ol>
 
-    <mat-form-field appearance="outline">
-      <mat-select [(value)]="selectedTopic">
-        <mat-option *ngFor="let topicOption of allTopics" [value]="topicOption">
-          {{ topicOption.title }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button (click)="addTopic()">Add Topic</button>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="selectedTopic">
+          <mat-option *ngFor="let topicOption of allTopics" [value]="topicOption">
+            {{ topicOption.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button (click)="addTopic()">Add Topic</button>
+    </div>
 
-    <button (click)="updateMeeting()">Save</button>
+    <button (click)="updateMeeting()">Save Meeting</button>
   </div>
   <button (click)="deleteMeeting()">Delete</button>
 </div>
