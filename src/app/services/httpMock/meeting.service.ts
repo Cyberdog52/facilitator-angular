@@ -1,7 +1,7 @@
-import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Meeting} from '../../model/meeting/meeting';
+import {MEETINGS} from "../../model/meeting/mock-meetings";
 import {IMeetingService} from "../../model/meeting/IMeetingService";
 
 @Injectable({
@@ -9,28 +9,32 @@ import {IMeetingService} from "../../model/meeting/IMeetingService";
 })
 export class MeetingService implements IMeetingService {
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
-  private meetingsURL = 'https://lambda-facilitator-backend.herokuapp.com/api/meetings';
-
   getMeetings(): Observable<Meeting[]> {
-    return this.http.get<Meeting[]>(this.meetingsURL);
+    return of(MEETINGS);
   }
 
   createMeeting(meeting: any): Observable<any> {
-    return this.http.post(this.meetingsURL, meeting, {responseType: 'text'});
+    meeting.id = MEETINGS.length + 1;
+    MEETINGS.push(meeting);
+    return of(MEETINGS.length);
   }
 
   getMeeting(id: string): Observable<Meeting> {
-    return this.http.get<Meeting>(this.meetingsURL + '/' + id);
+    return of(MEETINGS.find(x => x.id == id) as Meeting);
   }
 
   updateMeeting(meeting: Meeting): Observable<any> {
-    return this.http.put(this.meetingsURL, meeting);
+    const index = MEETINGS.findIndex(x => x.id == meeting.id);
+    MEETINGS[index] = meeting;
+    return of({});
   }
 
   deleteMeeting(id: string): Observable<any> {
-    return this.http.delete(this.meetingsURL + '/' + id);
+    const index = MEETINGS.findIndex(x => x.id == id);
+    MEETINGS.splice(index, 1);
+    return of(0);
   }
 }

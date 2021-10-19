@@ -2,8 +2,19 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {GameService} from "../app/services/http/game.service";
+import {MeetingService} from "../app/services/http/meeting.service";
+import {MemberService} from "../app/services/http/member.service";
+import {RoomService} from "../app/services/http/room.service";
+import {TopicService} from "../app/services/http/topic.service";
+
 export const environment = {
-  production: false
+  production: false,
+  gameService: GameService,
+  meetingService: MeetingService,
+  memberService: MemberService,
+  roomService: RoomService,
+  topicService: TopicService,
 };
 
 /*

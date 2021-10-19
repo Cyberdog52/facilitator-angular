@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Meeting} from 'src/app/model/meeting/meeting';
-import {MeetingService} from '../../services/http/meeting.service';
 import {Router} from "@angular/router";
+import {IMeetingService} from "../../model/meeting/IMeetingService";
 
 @Component({
   selector: 'app-meetings',
@@ -13,7 +13,7 @@ export class MeetingsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private meetingService: MeetingService,
+    @Inject('IMeetingService') private meetingService: IMeetingService
   ) {
   }
 
