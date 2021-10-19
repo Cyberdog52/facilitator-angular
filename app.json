@@ -8,7 +8,7 @@
   ],
   "env": {
     "NODE_OPTIONS": {
-      "required": true
+      "required": false
     }
   },
   "environments": {
@@ -16,16 +16,8 @@
       "buildpacks": [
         {
           "url": "heroku/google-chrome"
-        },
-        {
-          "url": "heroku/nodejs"
         }
-      ],
-      "env": {
-        "NODE_OPTIONS": {
-          "required": true
-        }
-      }
+      ]
     }
   },
   "formation": {
