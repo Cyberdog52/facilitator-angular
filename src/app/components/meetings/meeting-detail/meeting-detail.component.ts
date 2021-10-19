@@ -24,6 +24,11 @@ export class MeetingDetailComponent implements OnInit {
   allTopics: Topic[] = [];
   editing: boolean = false;
 
+  meetingDate: Date = new Date();
+  meetingTime: Date = new Date();
+
+  selectedTopic?: Topic;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -53,11 +58,14 @@ export class MeetingDetailComponent implements OnInit {
 
   getComponents(meeting: Meeting) {
     this.meeting = meeting;
+    this.meetingDate = this.meeting?.timeInMillis ? new Date(this.meeting.timeInMillis) : new Date();
+    this.meetingTime = this.meeting?.timeInMillis ? new Date(this.meeting.timeInMillis) : new Date();
     this.gameService.getGame(meeting.gameId as string).subscribe(game => this.game = game);
     this.roomService.getRoom(meeting.roomId as string).subscribe(room => this.room = room);
-    for (let topicId in meeting.topicIds) {
-      this.topicService.getTopic(topicId).subscribe(topic => this.topics[this.topics.length] = topic);
-    }
+    meeting.topicIds?.forEach(
+      topicId => this.topicService.getTopic(topicId)
+        .subscribe(topic => this.topics.push(topic))
+    );
   }
 
   edit() {
@@ -66,8 +74,22 @@ export class MeetingDetailComponent implements OnInit {
 
   updateMeeting() {
     this.editing = false;
+
+    if (this.meeting) {
+      this.meeting.timeInMillis = this.computeMeetingDateTime();
+      this.meeting.topicIds = this.topics.map((topic) => topic.id);
+    }
+
     const updatedMeeting = this.meeting as Meeting;
-    this.meetingService.updateMeeting(updatedMeeting).subscribe(() => this.getMeeting());
+    this.meetingService.updateMeeting(updatedMeeting).subscribe(() =>
+      this.getMeeting());
+  }
+
+  computeMeetingDateTime(): number {
+    let newDate = new Date();
+    newDate.setFullYear(this.meetingDate.getFullYear(), this.meetingDate.getMonth(), this.meetingDate.getDate());
+    newDate.setHours(this.meetingTime.getHours(), this.meetingTime.getMinutes());
+    return newDate.valueOf();
   }
 
   deleteMeeting() {
@@ -75,12 +97,24 @@ export class MeetingDetailComponent implements OnInit {
   }
 
   addTopic() {
-    const meeting: Meeting = this.meeting as Meeting;
-    console.log(meeting.topicIds);
-    if (!meeting.topicIds) {
-      meeting.topicIds = [];
-    }
-    meeting.topicIds[meeting.topicIds.length] = "1";
-    this.getComponents(meeting as Meeting);
+    if (this.selectedTopic) this.topics.push(this.selectedTopic);
+  }
+
+  setMeetingDate($event: string) {
+    this.meetingDate = new Date($event);
+  }
+
+  setMeetingTime($event: string) {
+    let date = new Date();
+    const hours = $event.split(':').shift() as string;
+    const minutes = $event.split(':').pop() as string;
+    date.setHours(parseInt(hours), parseInt(minutes));
+    this.meetingTime = new Date(date);
+  }
+
+  removeTopic(topic: Topic) {
+    const index = this.topics.indexOf(topic);
+    const length = this.topics.length;
+    this.topics = this.topics.splice(index, 1);
   }
 }
