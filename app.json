@@ -24,6 +24,11 @@
       "scripts": {
         "test-setup": "npm install",
         "test": "npm test"
+      },
+      "env": {
+        "NODE_OPTIONS": {
+          "required": true
+        }
       }
     }
   },
