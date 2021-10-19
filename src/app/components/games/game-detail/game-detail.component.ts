@@ -36,7 +36,7 @@ export class GameDetailComponent implements OnInit {
   updateGame() {
     this.editing = false;
     const updatedGame = this.game as Game;
-    this.gameService.updateGame(updatedGame.id, updatedGame).subscribe(() => this.getGame());
+    this.gameService.updateGame(updatedGame).subscribe(() => this.getGame());
   }
 
   deleteGame() {
