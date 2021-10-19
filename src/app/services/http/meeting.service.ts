@@ -25,8 +25,8 @@ export class MeetingService {
     return this.http.get<Meeting>(this.meetingsURL + '/' + id);
   }
 
-  updateMeeting(id: string, meeting: Meeting): Observable<any> {
-    return this.http.put(this.meetingsURL + '/' + id, meeting);
+  updateMeeting(meeting: Meeting): Observable<any> {
+    return this.http.put(this.meetingsURL, meeting);
   }
 
   deleteMeeting(id: string): Observable<any> {

@@ -51,7 +51,7 @@ export class TopicDetailComponent implements OnInit {
   updateTopic() {
     this.editing = false;
     const updatedTopic = this.topic as Topic;
-    this.topicService.updateTopic(updatedTopic.id, updatedTopic).subscribe(() => this.getTopic());
+    this.topicService.updateTopic(updatedTopic).subscribe(() => this.getTopic());
   }
 
   deleteTopic() {
