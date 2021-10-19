@@ -18,11 +18,7 @@
     <h3>Date & Time</h3>
     <input id="meetingDateInput" type="date" [ngModel]="meetingDate | date:'yyyy-MM-dd'" (ngModelChange)="setMeetingDate($event)"/>
     <input id="meetingTimeInput" type="time" [ngModel]="meetingTime | date: 'HH:mm'" (ngModelChange)="setMeetingTime($event)"/>
-    <!--
-      <input id="gameTitle" [(ngModel)]="game.title" placeholder="{{game.title}}" minlength="4" maxlength="50">
 
-      TODO: add useful way to edit date and dropdown for available games/rooms/topics
-    -->
     <h3>Game</h3>
     <select [(ngModel)]="meeting.gameId">
       <option *ngFor="let game of allGames" [ngValue]="game.id">
@@ -38,14 +34,22 @@
     </select>
 
     <h3>Topics</h3>
-    <div *ngIf='meeting.topicIds'>
-      <select *ngFor="let t of topics" [(ngModel)]="meeting.topicIds[topics.indexOf(t)]">
-        <option *ngFor="let topic of allTopics" [ngValue]="topic.id">
-          {{ topic.title }}
-        </option>
-      </select>
-    </div>
+    <ol>
+      <li *ngFor="let topic of topics">
+        {{topic.title}}
+        <button (click)="removeTopic(topic)">Remove Topic</button>
+      </li>
+    </ol>
+
+    <mat-form-field appearance="outline">
+      <mat-select [(value)]="selectedTopic">
+        <mat-option *ngFor="let topicOption of allTopics" [value]="topicOption">
+          {{ topicOption.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <button (click)="addTopic()">Add Topic</button>
+
     <button (click)="updateMeeting()">Save</button>
   </div>
   <button (click)="deleteMeeting()">Delete</button>

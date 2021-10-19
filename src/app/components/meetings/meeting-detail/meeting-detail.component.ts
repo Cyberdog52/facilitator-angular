@@ -27,6 +27,8 @@ export class MeetingDetailComponent implements OnInit {
   meetingDate: Date = new Date();
   meetingTime: Date = new Date();
 
+  selectedTopic?: Topic;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -61,7 +63,7 @@ export class MeetingDetailComponent implements OnInit {
     this.gameService.getGame(meeting.gameId as string).subscribe(game => this.game = game);
     this.roomService.getRoom(meeting.roomId as string).subscribe(room => this.room = room);
     for (let topicId in meeting.topicIds) {
-      this.topicService.getTopic(topicId).subscribe(topic => this.topics[this.topics.length] = topic);
+      this.topicService.getTopic(topicId).subscribe(topic => this.topics.push(topic));
     }
   }
 
@@ -72,7 +74,11 @@ export class MeetingDetailComponent implements OnInit {
   updateMeeting() {
     this.editing = false;
 
-    if (this.meeting) this.meeting.timeInMillis = this.computeMeetingDateTime();
+    if (this.meeting) {
+      this.meeting.timeInMillis = this.computeMeetingDateTime();
+      this.meeting.topicIds = this.topics.map((topic) => topic.id);
+    }
+
     const updatedMeeting = this.meeting as Meeting;
     this.meetingService.updateMeeting(updatedMeeting.id, updatedMeeting).subscribe(() =>
       this.getMeeting());
@@ -90,13 +96,7 @@ export class MeetingDetailComponent implements OnInit {
   }
 
   addTopic() {
-    const meeting: Meeting = this.meeting as Meeting;
-    console.log(meeting.topicIds);
-    if (!meeting.topicIds) {
-      meeting.topicIds = [];
-    }
-    meeting.topicIds[meeting.topicIds.length] = "1";
-    this.getComponents(meeting as Meeting);
+    if(this.selectedTopic) this.topics.push(this.selectedTopic);
   }
 
   setMeetingDate($event: string) {
@@ -109,5 +109,12 @@ export class MeetingDetailComponent implements OnInit {
     const minutes = $event.split(':').pop() as string;
     date.setHours(parseInt(hours), parseInt(minutes));
     this.meetingTime = new Date(date);
+  }
+
+  removeTopic(topic: Topic) {
+    const index = this.topics.indexOf(topic);
+    const length = this.topics.length;
+    this.topics = [...this.topics.slice(0, index),
+      ...this.topics.slice(index+1, length)];
   }
 }
