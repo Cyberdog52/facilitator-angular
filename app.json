@@ -4,14 +4,23 @@
   "buildpacks": [
     {
       "url": "heroku/nodejs"
-    },
-    {
-      "url": "heroku/google-chrome"
     }
   ],
   "env": {
     "NODE_OPTIONS": {
       "required": true
+    }
+  },
+  "environments": {
+    "test": {
+      "buildpacks": [
+        {
+          "url": "heroku/google-chrome"
+        },
+        {
+          "url": "heroku/nodejs"
+        }
+      ]
     }
   },
   "formation": {
