@@ -1,6 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TopicsComponent } from './topics.component';
+import {TopicsComponent} from './topics.component';
+import {RouterTestingModule} from "@angular/router/testing";
+import {TopicService} from "../../services/http/topic.service";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('TopicComponent', () => {
   let component: TopicsComponent;
@@ -8,9 +11,12 @@ describe('TopicComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopicsComponent ]
+      declarations: [TopicsComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers: [TopicService]
+
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

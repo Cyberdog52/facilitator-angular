@@ -1,6 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MeetingsComponent } from './meetings.component';
+import {MeetingsComponent} from './meetings.component';
+import {RouterTestingModule} from "@angular/router/testing";
+import {MeetingService} from "../../services/http/meeting.service";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('MeetingsComponent', () => {
   let component: MeetingsComponent;
@@ -8,9 +11,11 @@ describe('MeetingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MeetingsComponent ]
+      declarations: [MeetingsComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers: [MeetingService]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

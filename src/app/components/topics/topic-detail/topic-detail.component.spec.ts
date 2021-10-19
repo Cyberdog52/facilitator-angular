@@ -1,6 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TopicDetailComponent } from './topic-detail.component';
+import {TopicDetailComponent} from './topic-detail.component';
+import {ActivatedRoute} from "@angular/router";
+import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {TopicService} from "../../../services/http/topic.service";
 
 describe('TopicDetailComponent', () => {
   let component: TopicDetailComponent;
@@ -8,9 +12,25 @@ describe('TopicDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopicDetailComponent ]
+      declarations: [TopicDetailComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers:
+        [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              snapshot: {
+                paramMap: {
+                  get: (id: string) => {
+                    id: '24fkzrw3487943uf358lovd'
+                  }
+                }
+              }
+            }
+          }, TopicService
+        ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

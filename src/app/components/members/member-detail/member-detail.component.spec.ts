@@ -1,6 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MemberDetailComponent } from './member-detail.component';
+import {MemberDetailComponent} from './member-detail.component';
+import {ActivatedRoute} from "@angular/router";
+import {RouterTestingModule} from "@angular/router/testing";
+import {MemberService} from "../../../services/http/member.service";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('MemberDetailComponent', () => {
   let component: MemberDetailComponent;
@@ -8,9 +12,26 @@ describe('MemberDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MemberDetailComponent ]
+      declarations: [MemberDetailComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers:
+        [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              snapshot: {
+                paramMap: {
+                  get: (id: string) => {
+                    id: '24fkzrw3487943uf358lovd'
+                  }
+                }
+              }
+            }
+          },
+          MemberService
+        ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
