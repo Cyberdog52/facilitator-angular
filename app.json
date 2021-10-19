@@ -17,7 +17,9 @@
         {
           "url": "heroku/google-chrome"
         }
-      ]
+      ],
+      "scripts": {
+      }
     }
   },
   "formation": {
