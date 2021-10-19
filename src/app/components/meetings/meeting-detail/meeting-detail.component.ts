@@ -62,9 +62,10 @@ export class MeetingDetailComponent implements OnInit {
     this.meetingTime = this.meeting?.timeInMillis ? new Date(this.meeting.timeInMillis) : new Date();
     this.gameService.getGame(meeting.gameId as string).subscribe(game => this.game = game);
     this.roomService.getRoom(meeting.roomId as string).subscribe(room => this.room = room);
-    for (let topicId in meeting.topicIds) {
-      this.topicService.getTopic(topicId).subscribe(topic => this.topics.push(topic));
-    }
+    meeting.topicIds?.forEach(
+      topicId => this.topicService.getTopic(topicId)
+        .subscribe(topic => this.topics.push(topic))
+    );
   }
 
   edit() {
@@ -96,7 +97,7 @@ export class MeetingDetailComponent implements OnInit {
   }
 
   addTopic() {
-    if(this.selectedTopic) this.topics.push(this.selectedTopic);
+    if (this.selectedTopic) this.topics.push(this.selectedTopic);
   }
 
   setMeetingDate($event: string) {
@@ -115,6 +116,6 @@ export class MeetingDetailComponent implements OnInit {
     const index = this.topics.indexOf(topic);
     const length = this.topics.length;
     this.topics = [...this.topics.slice(0, index),
-      ...this.topics.slice(index+1, length)];
+      ...this.topics.slice(index + 1, length)];
   }
 }
