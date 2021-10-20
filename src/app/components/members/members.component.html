@@ -1,11 +1,22 @@
-<h2>Members</h2>
-<div class="members-board">
-  <ul class="members">
-    <li *ngFor="let member of members" >
-      <a routerLink="/member/{{member.id}}">
+<mat-card>
+  <mat-card-title class="text-center">Members</mat-card-title>
+  <mat-list>
+    <mat-list-item *ngFor="let member of members; index as i">
+      <button mat-button routerLink="/member/{{member.id}}">
         {{member.name}}
-      </a>
-    </li>
-  </ul>
-  <button (click)="addMember()">Add Member</button>
-</div>
+      </button>
+      <div class="right">
+        <button mat-button [routerLink]="['/member/', member.id, {editing: true}]">
+          <mat-icon aria-hidden="false">edit</mat-icon>
+        </button>
+        <button mat-button (click)="deleteMember(member)">
+          <mat-icon aria-hidden="false">delete</mat-icon>
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+  <button mat-button (click)="addMember()" class="center">
+    <mat-icon aria-hidden="false">add</mat-icon>
+  </button>
+</mat-card>

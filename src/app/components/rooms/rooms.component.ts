@@ -29,4 +29,9 @@ export class RoomsComponent implements OnInit {
     const newRoom = {name: 'New Room', capacity: 10};
     this.roomService.createRoom(newRoom).subscribe((uuid) => this.router.navigate(["/room/" + uuid, {editing: "true"}]));
   }
+
+  deleteRoom(room: Room) {
+    this.rooms.splice(this.rooms.indexOf(room), 1);
+    this.roomService.deleteRoom(room.id);
+  }
 }

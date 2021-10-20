@@ -29,4 +29,9 @@ export class MeetingsComponent implements OnInit {
     const newMeeting = {timeInMillis: Date.now()};
     this.meetingService.createMeeting(newMeeting).subscribe((uuid) => this.router.navigate(["/meeting/" + uuid, {editing: "true"}]));
   }
+
+  deleteMeeting(meeting: Meeting) {
+    this.meetings.splice(this.meetings.indexOf(meeting), 1);
+    this.meetingService.deleteMeeting(meeting.id);
+  }
 }

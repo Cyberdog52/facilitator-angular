@@ -1,11 +1,22 @@
-<h2>Topics</h2>
-<div class="topics-board">
-  <ul class="topics">
-    <li *ngFor="let topic of topics" >
-      <a routerLink="/topic/{{topic.id}}">
+<mat-card>
+  <mat-card-title class="text-center">Topics</mat-card-title>
+  <mat-list>
+    <mat-list-item *ngFor="let topic of topics; index as i">
+      <button mat-button routerLink="/topic/{{topic.id}}">
         {{topic.title}}
-      </a>
-    </li>
-  </ul>
-  <button (click)="addTopic()">Add Topic</button>
-</div>
+      </button>
+      <div class="right">
+        <button mat-button [routerLink]="['/topic/', topic.id, {editing: true}]">
+          <mat-icon aria-hidden="false">edit</mat-icon>
+        </button>
+        <button mat-button (click)="deleteTopic(topic)">
+          <mat-icon aria-hidden="false">delete</mat-icon>
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+  <button mat-button (click)="addTopic()" class="center">
+    <mat-icon aria-hidden="false">add</mat-icon>
+  </button>
+</mat-card>
