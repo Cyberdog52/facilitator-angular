@@ -16,7 +16,7 @@
       </button>
     </a>
     <mat-card-actions align="end">
-      <button mat-button (click)="edit()">
+      <button mat-button (click)="edit()" [class.highlighted]="editing">
         <mat-icon aria-hidden="false">edit</mat-icon>
       </button>
       <button mat-button (click)="deleteGame()">
