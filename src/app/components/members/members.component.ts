@@ -29,4 +29,9 @@ export class MembersComponent implements OnInit {
     const newMember = {name: 'New Member', role: 'unassigned'};
     this.memberService.createMember(newMember).subscribe((uuid) => this.router.navigate(["/member/" + uuid, {editing: "true"}]));
   }
+
+  deleteMember(member: Member) {
+    this.members.splice(this.members.indexOf(member), 1);
+    this.memberService.deleteMember(member.id);
+  }
 }

@@ -45,11 +45,11 @@ export class TopicDetailComponent implements OnInit {
   }
 
   edit() {
-    this.editing = true;
+    this.editing = !this.editing;
+    this.router.navigate(["/topic/" + (this.topic as Topic).id, {editing: this.editing}]).then();
   }
 
   updateTopic() {
-    this.editing = false;
     const updatedTopic = this.topic as Topic;
     this.topicService.updateTopic(updatedTopic).subscribe(() => this.getTopic());
   }

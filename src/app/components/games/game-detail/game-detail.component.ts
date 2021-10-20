@@ -30,11 +30,11 @@ export class GameDetailComponent implements OnInit {
   }
 
   edit() {
-    this.editing = true;
+    this.editing = !this.editing;
+    this.router.navigate(["/game/" + (this.game as Game).id, {editing: this.editing}]).then();
   }
 
   updateGame() {
-    this.editing = false;
     const updatedGame = this.game as Game;
     this.gameService.updateGame(updatedGame).subscribe(() => this.getGame());
   }

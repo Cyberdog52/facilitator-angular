@@ -4,6 +4,9 @@ import {Topic} from '../../model/topic/topic';
 import {TOPICS} from "../../model/topic/mock-topics";
 import {ITopicService} from "../../model/topic/ITopicService";
 
+// @ts-ignore
+import {v4 as uuidv4} from 'uuid';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,9 +20,9 @@ export class TopicService implements ITopicService {
   }
 
   createTopic(topic: any): Observable<any> {
-    topic.id = TOPICS.length + 1;
+    topic.id = uuidv4();
     TOPICS.push(topic);
-    return of(TOPICS.length);
+    return of(topic.id);
   }
 
   getTopic(id: string): Observable<Topic> {

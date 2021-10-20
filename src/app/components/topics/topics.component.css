@@ -1,38 +1,13 @@
-.topics {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
+.right {
+  margin-left: auto;
+  margin-right: 0;
 }
 
-li {
-  position: relative;
-  cursor: pointer;
-}
-
-li:hover {
-  left: .1em;
-}
-
-a {
-  color: #333;
-  text-decoration: none;
-  text-align: center;
-  background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
-  border-radius: 4px;
+.center {
   display: block;
-  width: 100%;
+  margin: auto;
 }
 
-a:hover {
-  color: #2c3a41;
-  background-color: #e6e6e6;
-}
-
-a:active {
-  background-color: #525252;
-  color: #fafafa;
+.text-center {
+  text-align: center;
 }

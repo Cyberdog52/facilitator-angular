@@ -4,6 +4,9 @@ import {Room} from '../../model/room/room';
 import {ROOMS} from "../../model/room/mock-rooms";
 import {IRoomService} from "../../model/room/IRoomService";
 
+// @ts-ignore
+import {v4 as uuidv4} from 'uuid';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,9 +20,9 @@ export class RoomService implements IRoomService {
   }
 
   createRoom(room: any): Observable<any> {
-    room.id = ROOMS.length + 1;
+    room.id = uuidv4();
     ROOMS.push(room);
-    return of(ROOMS.length);
+    return of(room.id);
   }
 
   getRoom(id: string): Observable<Room> {

@@ -29,4 +29,9 @@ export class TopicsComponent implements OnInit {
     const newTopic = {title: 'New Topic', description: 'Add topic description here...', assigneeId: '1'};
     this.topicService.createTopic(newTopic).subscribe((uuid) => this.router.navigate(["/topic/" + uuid, {editing: "true"}]));
   }
+
+  deleteTopic(topic: Topic) {
+    this.topics.splice(this.topics.indexOf(topic), 1);
+    this.topicService.deleteTopic(topic.id);
+  }
 }

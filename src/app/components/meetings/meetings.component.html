@@ -1,11 +1,22 @@
-<h2>Meetings</h2>
-<div class="meetings-board">
-  <ul class="meetings">
-    <li *ngFor="let meeting of meetings" >
-      <a routerLink="/meeting/{{meeting.id}}">
+<mat-card>
+  <mat-card-title class="text-center">Meetings</mat-card-title>
+  <mat-list>
+    <mat-list-item *ngFor="let meeting of meetings; index as i">
+      <button mat-button routerLink="/meeting/{{meeting.id}}">
         {{meeting.timeInMillis | date:'dd.MM.y, HH:mm'}} Uhr
-      </a>
-    </li>
-  </ul>
-  <button (click)="addMeeting()">Add Meeting</button>
-</div>
+      </button>
+      <div class="right">
+        <button mat-button [routerLink]="['/meeting/', meeting.id, {editing: true}]">
+          <mat-icon aria-hidden="false">edit</mat-icon>
+        </button>
+        <button mat-button (click)="deleteMeeting(meeting)">
+          <mat-icon aria-hidden="false">delete</mat-icon>
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+  <button mat-button (click)="addMeeting()" class="center">
+    <mat-icon aria-hidden="false">add</mat-icon>
+  </button>
+</mat-card>

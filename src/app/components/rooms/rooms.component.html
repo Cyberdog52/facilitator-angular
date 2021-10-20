@@ -1,11 +1,22 @@
-<h2>Rooms</h2>
-<div class="rooms-board">
-  <ul class="rooms">
-    <li *ngFor="let room of rooms" >
-      <a routerLink="/room/{{room.id}}">
+<mat-card>
+  <mat-card-title class="text-center">Rooms</mat-card-title>
+  <mat-list>
+    <mat-list-item *ngFor="let room of rooms; index as i">
+      <button mat-button routerLink="/room/{{room.id}}">
         {{room.name}}
-      </a>
-    </li>
-  </ul>
-  <button (click)="addRoom()">Add Room</button>
-</div>
+      </button>
+      <div class="right">
+        <button mat-button [routerLink]="['/room/', room.id, {editing: true}]">
+          <mat-icon aria-hidden="false">edit</mat-icon>
+        </button>
+        <button mat-button (click)="deleteRoom(room)">
+          <mat-icon aria-hidden="false">delete</mat-icon>
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+  <button mat-button (click)="addRoom()" class="center">
+    <mat-icon aria-hidden="false">add</mat-icon>
+  </button>
+</mat-card>

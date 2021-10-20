@@ -29,4 +29,9 @@ export class GamesComponent implements OnInit {
     const newGame = {title: 'New Game', uri: 'https://samplegame.com'};
     this.gameService.createGame(newGame).subscribe((uuid) => this.router.navigate(["/game/" + uuid, {editing: "true"}]));
   }
+
+  deleteGame(game: Game) {
+    this.games.splice(this.games.indexOf(game), 1);
+    this.gameService.deleteGame(game.id);
+  }
 }

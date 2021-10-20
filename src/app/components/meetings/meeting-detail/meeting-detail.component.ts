@@ -70,12 +70,11 @@ export class MeetingDetailComponent implements OnInit {
   }
 
   edit() {
-    this.editing = true;
+    this.editing = !this.editing;
+    this.router.navigate(["/meeting/" + (this.meeting as Meeting).id, {editing: this.editing}]).then();
   }
 
   updateMeeting() {
-    this.editing = false;
-
     if (this.meeting) {
       this.meeting.timeInMillis = this.computeMeetingDateTime();
       this.meeting.topicIds = this.topics.map((topic) => topic.id);
@@ -98,11 +97,15 @@ export class MeetingDetailComponent implements OnInit {
   }
 
   addTopic() {
-    if (this.selectedTopic) this.topics.push(this.selectedTopic);
+    if (this.selectedTopic) {
+      this.topics.push(this.selectedTopic);
+      this.updateMeeting();
+    }
   }
 
   setMeetingDate($event: string) {
     this.meetingDate = new Date($event);
+    this.updateMeeting();
   }
 
   setMeetingTime($event: string) {
@@ -111,15 +114,11 @@ export class MeetingDetailComponent implements OnInit {
     const minutes = $event.split(':').pop() as string;
     date.setHours(parseInt(hours), parseInt(minutes));
     this.meetingTime = new Date(date);
+    this.updateMeeting();
   }
 
-  removeTopic(topic: Topic) {
-    const index = this.topics.indexOf(topic);
-
-    if(index == -1) {
-      return;
-    }
-
+  removeTopic(index: number) {
     this.topics.splice(index, 1);
+    this.updateMeeting();
   }
 }

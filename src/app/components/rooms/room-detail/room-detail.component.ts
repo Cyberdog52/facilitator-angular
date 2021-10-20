@@ -30,11 +30,11 @@ export class RoomDetailComponent implements OnInit {
   }
 
   edit() {
-    this.editing = true;
+    this.editing = !this.editing;
+    this.router.navigate(["/room/" + (this.room as Room).id, {editing: this.editing}]).then();
   }
 
   updateRoom() {
-    this.editing = false;
     const updatedRoom = this.room as Room;
     this.roomService.updateRoom(updatedRoom).subscribe(() => this.getRoom());
   }

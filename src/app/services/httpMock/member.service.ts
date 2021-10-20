@@ -4,6 +4,9 @@ import {Member} from '../../model/member/member';
 import {MEMBERS} from "../../model/member/mock-members";
 import {IMemberService} from "../../model/member/IMemberService";
 
+// @ts-ignore
+import {v4 as uuidv4} from 'uuid';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,9 +20,9 @@ export class MemberService implements IMemberService {
   }
 
   createMember(member: any): Observable<any> {
-    member.id = MEMBERS.length + 1;
+    member.id = uuidv4();
     MEMBERS.push(member);
-    return of(MEMBERS.length);
+    return of(member.id);
   }
 
   getMember(id: string): Observable<Member> {
