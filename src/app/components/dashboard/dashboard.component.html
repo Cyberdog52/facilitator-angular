@@ -1,7 +1,5 @@
-<h2>Dashboard</h2>
-<h3>Glücksrad oder beliebteste Spiele könnten hier stehen</h3>
-<app-members></app-members>
-<app-meetings></app-meetings>
-<app-games></app-games>
-<app-topics></app-topics>
-<app-rooms></app-rooms>
+<h2>Glücksrad</h2>
+
+<button mat-button *ngIf="!urlParams" (click)="initGluecksrad()">Play Glücksrad</button>
+
+<iframe *ngIf="urlParams" [src]="url | safe" width="500" height="500" style="border:none;"></iframe>

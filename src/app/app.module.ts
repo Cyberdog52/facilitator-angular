@@ -18,9 +18,12 @@ import {MeetingDetailComponent} from './components/meetings/meeting-detail/meeti
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {SafePipe} from "./safe.pipe";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
+    SafePipe,
     AppComponent,
     MembersComponent,
     GamesComponent,
@@ -40,7 +43,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
