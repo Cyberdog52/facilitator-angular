@@ -3,9 +3,9 @@ textarea:disabled, input:disabled {
 }
 
 textarea:enabled {
-  background: #e6e6e6;
+  background: var(--primary-lighter-color);
 }
 
 textarea:focus {
-  background: #e0cee1;
+  background: var(--accent-lighter-color);
 }
