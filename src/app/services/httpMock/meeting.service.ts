@@ -4,6 +4,9 @@ import {Meeting} from '../../model/meeting/meeting';
 import {MEETINGS} from "../../model/meeting/mock-meetings";
 import {IMeetingService} from "../../model/meeting/IMeetingService";
 
+// @ts-ignore
+import {v4 as uuidv4} from 'uuid';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,9 +20,9 @@ export class MeetingService implements IMeetingService {
   }
 
   createMeeting(meeting: any): Observable<any> {
-    meeting.id = MEETINGS.length + 1;
+    meeting.id = uuidv4();
     MEETINGS.push(meeting);
-    return of(MEETINGS.length);
+    return of(meeting.id);
   }
 
   getMeeting(id: string): Observable<Meeting> {
