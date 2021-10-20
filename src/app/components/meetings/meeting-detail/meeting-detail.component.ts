@@ -71,7 +71,7 @@ export class MeetingDetailComponent implements OnInit {
 
   edit() {
     this.editing = !this.editing;
-    this.router.navigate(["/meeting/" + (this.meeting as Meeting).id, {editing: this.editing}]);
+    this.router.navigate(["/meeting/" + (this.meeting as Meeting).id, {editing: this.editing}]).then();
   }
 
   updateMeeting() {
@@ -97,7 +97,10 @@ export class MeetingDetailComponent implements OnInit {
   }
 
   addTopic() {
-    if (this.selectedTopic) this.topics.push(this.selectedTopic);
+    if (this.selectedTopic) {
+      this.topics.push(this.selectedTopic);
+      this.updateMeeting();
+    }
   }
 
   setMeetingDate($event: string) {
@@ -116,5 +119,6 @@ export class MeetingDetailComponent implements OnInit {
 
   removeTopic(index: number) {
     this.topics.splice(index, 1);
+    this.updateMeeting();
   }
 }

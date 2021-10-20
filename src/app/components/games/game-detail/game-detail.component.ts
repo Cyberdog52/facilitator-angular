@@ -31,7 +31,7 @@ export class GameDetailComponent implements OnInit {
 
   edit() {
     this.editing = !this.editing;
-    this.router.navigate(["/game/" + (this.game as Game).id, {editing: this.editing}]);
+    this.router.navigate(["/game/" + (this.game as Game).id, {editing: this.editing}]).then();
   }
 
   updateGame() {
