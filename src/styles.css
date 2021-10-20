@@ -21,6 +21,10 @@ textarea:focus {
   background: var(--accent-lighter-color);
 }
 
+.highlighted {
+  background: var(--accent-lighter-color);
+}
+
 .right {
   margin-left: auto;
   margin-right: 0;
