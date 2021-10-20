@@ -30,7 +30,8 @@ export class MemberDetailComponent implements OnInit {
   }
 
   edit() {
-    this.editing = true;
+    this.editing = !this.editing;
+    this.router.navigate(["/member/" + (this.member as Member).id, {editing: this.editing}]).then();
   }
 
   updateMember() {
