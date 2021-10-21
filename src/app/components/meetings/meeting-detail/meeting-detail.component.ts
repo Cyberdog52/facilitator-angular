@@ -81,6 +81,7 @@ export class MeetingDetailComponent implements OnInit {
     }
 
     const updatedMeeting = this.meeting as Meeting;
+    console.log(updatedMeeting);
     this.meetingService.updateMeeting(updatedMeeting).subscribe(() =>
       this.getMeeting());
   }

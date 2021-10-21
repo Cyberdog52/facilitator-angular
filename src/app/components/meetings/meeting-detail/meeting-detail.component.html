@@ -14,7 +14,7 @@
 
       <mat-card-title>Game</mat-card-title>
       <mat-form-field appearance="outline">
-        <mat-select [(value)]="meeting.gameId" [disabled]="!editing">
+        <mat-select [(value)]="meeting.gameId" [disabled]="!editing" (selectionChange)="updateMeeting()">
           <mat-option *ngFor="let game of allGames" [value]="game.id">
             {{ game.title }}
           </mat-option>
@@ -23,7 +23,7 @@
 
       <mat-card-title>Room</mat-card-title>
       <mat-form-field appearance="outline">
-        <mat-select [(value)]="meeting.roomId" [disabled]="!editing">
+        <mat-select [(value)]="meeting.roomId" [disabled]="!editing" (selectionChange)="updateMeeting()">
           <mat-option *ngFor="let room of allRooms" [value]="room.id">
             {{ room.name }}
           </mat-option>
