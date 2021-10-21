@@ -9,8 +9,10 @@ import { Member } from '../../model/member/member';
 })
 export class DashboardComponent implements OnInit {
   members: Member[] = [];
-  urlParams: string = "";
-  url: string = "https://wheeldecide.com/e.php?";
+  players: Member[] = [];
+  urlParams!: string;
+  url!: string;
+  showPlayers: boolean = false;
 
   constructor(private dataService: MemberService) { }
 
@@ -19,9 +21,14 @@ export class DashboardComponent implements OnInit {
   }
 
   initGluecksrad() {
-    for (let index in this.members) {
-      this.urlParams += "c"+index+"="+this.members[index].name+"&";
+    this.urlParams = "";
+    this.url = "";
+    if (this.players.length > 0) {
+      for (let i = 0; i < this.players.length; i++) {
+        let paramId = i+1;
+        this.urlParams += "c"+paramId+"="+this.players[i]+"&";
+      }
+      this.url += "https://wheeldecide.com/e.php?"+this.urlParams+"col=wof&time=8";
     }
-    this.url += this.urlParams+"col=wof&time=8";
   }
 }

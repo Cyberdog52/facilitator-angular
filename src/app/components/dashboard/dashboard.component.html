@@ -1,5 +1,14 @@
 <h2>Glücksrad</h2>
 
-<button mat-button *ngIf="!urlParams" (click)="initGluecksrad()">Play Glücksrad</button>
+<button mat-button (click)="showPlayers=!showPlayers">Select players</button>
+<button mat-button *ngIf="players.length > 0 && showPlayers" (click)="initGluecksrad(); showPlayers=!showPlayers">Generate Glücksrad</button>
 
-<iframe *ngIf="urlParams" [src]="url | safe" width="500" height="500" style="border:none;"></iframe>
+<div *ngIf="showPlayers" style="width: 50%">
+  <mat-selection-list [(ngModel)]="players">
+    <mat-list-option *ngFor="let member of members" [value]="member.name">
+      {{member.name}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+
+<iframe *ngIf="urlParams" [src]="url | safe" width="500" height="500" style="border:none; position: absolute"></iframe>
