@@ -18,6 +18,8 @@ import {MeetingDetailComponent} from './components/meetings/meeting-detail/meeti
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {SafePipe} from "./safe.pipe";
+import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
 import {MatToolbarModule} from "@angular/material/toolbar";
@@ -31,6 +33,7 @@ import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
+    SafePipe,
     AppComponent,
     MembersComponent,
     GamesComponent,
@@ -51,6 +54,7 @@ import {MatListModule} from "@angular/material/list";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonToggleModule,
+    MatButtonModule,
     //MemberEditorDropdown,
     MatSelectModule,
     MatOptionModule,
