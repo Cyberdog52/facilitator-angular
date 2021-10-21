@@ -26,7 +26,7 @@ export class MembersComponent implements OnInit {
   }
 
   addMember() {
-    const newMember = {name: 'New Member', role: 'unassigned'};
+    const newMember = {name: 'New Member', role: 'MEMBER'};
     this.memberService.createMember(newMember).subscribe((uuid) => this.router.navigate(["/member/" + uuid, {editing: "true"}]));
   }
 
