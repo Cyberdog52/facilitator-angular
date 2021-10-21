@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MemberService } from '../../../services/http/member.service';
-import { Member } from '../../../model/member/member';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Member} from '../../../model/member/member';
+import {IMemberService} from "../../../model/member/IMemberService";
 
 @Component({
   selector: 'app-member-detail',
@@ -15,29 +15,32 @@ export class MemberDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private memberService: MemberService
-    ) {}
+    @Inject('IMemberService') private memberService: IMemberService
+  ) {
+  }
 
   ngOnInit(): void {
     this.getMember();
   }
 
-  getMember(){
+  getMember() {
     const id = this.route.snapshot.paramMap.get('id') as string;
+    this.editing = this.route.snapshot.paramMap.get('editing') == "true";
     this.memberService.getMember(id).subscribe(member => this.member = member);
   }
 
-  edit(){
-    this.editing = true;
+  edit() {
+    this.editing = !this.editing;
+    this.router.navigate(["/member/" + (this.member as Member).id, {editing: this.editing}]).then();
   }
 
-  updateMember(){
+  updateMember() {
     this.editing = false;
     const updatedMember = this.member as Member;
-    this.memberService.updateMember(updatedMember.id, updatedMember).subscribe(() => this.getMember());
+    this.memberService.updateMember(updatedMember).subscribe(() => this.getMember());
   }
 
-  deleteMember(){
+  deleteMember() {
     this.memberService.deleteMember((this.member as Member).id).subscribe(() => this.router.navigateByUrl("/members"));
   }
 }

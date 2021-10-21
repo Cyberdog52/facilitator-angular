@@ -1,11 +1,22 @@
-<h2>Games</h2>
-<div class="games-board">
-  <ul class="games">
-    <li *ngFor="let game of games" >
-      <a routerLink="/game/{{game.id}}">
+<mat-card>
+  <mat-card-title class="text-center">Games</mat-card-title>
+  <mat-list>
+    <mat-list-item *ngFor="let game of games; index as i">
+      <button mat-button routerLink="/game/{{game.id}}">
         {{game.title}}
-      </a>
-    </li>
-  </ul>
-  <button (click)="addGame()">Add Game</button>
-</div>
+      </button>
+      <div class="right">
+        <button mat-button [routerLink]="['/game/', game.id, {editing: true}]">
+          <mat-icon aria-hidden="false">edit</mat-icon>
+        </button>
+        <button mat-button (click)="deleteGame(game)">
+          <mat-icon aria-hidden="false">delete</mat-icon>
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+  <button mat-button (click)="addGame()" class="center">
+    <mat-icon aria-hidden="false">add</mat-icon>
+  </button>
+</mat-card>

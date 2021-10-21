@@ -1,18 +1,29 @@
 <div *ngIf='game'>
-  <div *ngIf='!editing'>
-    <h2>{{game.title}}</h2>
-    <p>{{game.description}}</p>
-    <a href="{{game.uri}}">{{game.uri}}</a>
-    <button (click)="edit()">Edit</button>
-  </div>
-  <div *ngIf='editing'>
-    <input id="title" [(ngModel)]="game.title" placeholder="{{game.title}}" minlength="4" maxlength="50">
-    <input id="description" [(ngModel)]="game.description" placeholder="{{game.description}}" minlength="4"
-           maxlength="200">
-    <input id="uri" [(ngModel)]="game.uri" placeholder="{{game.uri}}" minlength="4" maxlength="50">
-    <button (click)="updateGame()">Save</button>
-  </div>
-  <button (click)="deleteGame()">Delete</button>
+  <mat-card>
+    <mat-card-title>
+      <mat-form-field>
+        <input matInput [disabled]="!editing" (change)="updateGame()" [(ngModel)]="game.title">
+      </mat-form-field>
+    </mat-card-title>
+    <mat-card-content>
+      <textarea matInput [disabled]="!editing" (change)="updateGame()" [(ngModel)]="game.description"></textarea>
+    </mat-card-content>
+    <input matInput [hidden]="!editing" (change)="updateGame()" [(ngModel)]="game.uri">
+    <a href="{{game.uri}}">
+      <button mat-button>
+        <mat-icon aria-hidden="false">open_in_new</mat-icon>
+        <p>Open Website</p>
+      </button>
+    </a>
+    <mat-card-actions align="end">
+      <button mat-button (click)="edit()" [class.highlighted]="editing">
+        <mat-icon aria-hidden="false">edit</mat-icon>
+      </button>
+      <button mat-button (click)="deleteGame()">
+        <mat-icon aria-hidden="false">delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 <div *ngIf='!game'>
   <h2>There is no game with this ID</h2>

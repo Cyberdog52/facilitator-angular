@@ -1,15 +1,25 @@
 <div *ngIf='room'>
-  <div *ngIf='!editing'>
-    <h2>{{room.name}}</h2>
-    <h3>Capacity: {{room.capacity}}</h3>
-    <button (click)="edit()">Edit</button>
-  </div>
-  <div *ngIf='editing'>
-    <input id="name" [(ngModel)]="room.name" placeholder="{{room.name}}" minlength="4" maxlength="50">
-    <input id="capacity" [(ngModel)]="room.capacity" placeholder="{{room.capacity}}" type="number">
-    <button (click)="updateRoom()">Save</button>
-  </div>
-  <button (click)="deleteRoom()">Delete</button>
+  <mat-card>
+    <mat-card-title>
+      <mat-form-field>
+        <input matInput [disabled]="!editing" (change)="updateRoom()" [(ngModel)]="room.name">
+      </mat-form-field>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-card-title>Capacity</mat-card-title>
+      <mat-form-field>
+        <input matInput [disabled]="!editing" (change)="updateRoom()" [(ngModel)]="room.capacity" type="number">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button (click)="edit()" [class.highlighted]="editing">
+        <mat-icon aria-hidden="false">edit</mat-icon>
+      </button>
+      <button mat-button (click)="deleteRoom()">
+        <mat-icon aria-hidden="false">delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 <div *ngIf='!room'>
   <h2>There is no room with this ID</h2>

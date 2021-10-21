@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { RoomService } from '../../../services/http/room.service';
-import { Room } from '../../../model/room/room';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Room} from '../../../model/room/room';
+import {IRoomService} from "../../../model/room/IRoomService";
 
 @Component({
   selector: 'app-room-detail',
@@ -15,29 +15,31 @@ export class RoomDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private roomService: RoomService
-  ) {}
+    @Inject('IRoomService') private roomService: IRoomService
+  ) {
+  }
 
   ngOnInit(): void {
     this.getRoom();
   }
 
-  getRoom(){
+  getRoom() {
     const id = this.route.snapshot.paramMap.get('id') as string;
+    this.editing = this.route.snapshot.paramMap.get('editing') == "true";
     this.roomService.getRoom(id).subscribe(room => this.room = room);
   }
 
-  edit(){
-    this.editing = true;
+  edit() {
+    this.editing = !this.editing;
+    this.router.navigate(["/room/" + (this.room as Room).id, {editing: this.editing}]).then();
   }
 
-  updateRoom(){
-    this.editing = false;
+  updateRoom() {
     const updatedRoom = this.room as Room;
-    this.roomService.updateRoom(updatedRoom.id, updatedRoom).subscribe(() => this.getRoom());
+    this.roomService.updateRoom(updatedRoom).subscribe(() => this.getRoom());
   }
 
-  deleteRoom(){
+  deleteRoom() {
     this.roomService.deleteRoom((this.room as Room).id).subscribe(() => this.router.navigateByUrl("/rooms"));
   }
 }

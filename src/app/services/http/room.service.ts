@@ -2,11 +2,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Room} from '../../model/room/room';
+import {IRoomService} from "../../model/room/IRoomService";
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoomService {
+export class RoomService implements IRoomService {
 
   constructor(private http: HttpClient) {
   }
@@ -18,15 +19,15 @@ export class RoomService {
   }
 
   createRoom(room: any): Observable<any> {
-    return this.http.post(this.roomsURL, room);
+    return this.http.post(this.roomsURL, room, {responseType: 'text'});
   }
 
   getRoom(id: string): Observable<Room> {
     return this.http.get<Room>(this.roomsURL + '/' + id);
   }
 
-  updateRoom(id: string, room: Room): Observable<any> {
-    return this.http.put(this.roomsURL + '/' + id, room);
+  updateRoom(room: Room): Observable<any> {
+    return this.http.put(this.roomsURL, room);
   }
 
   deleteRoom(id: string): Observable<any> {

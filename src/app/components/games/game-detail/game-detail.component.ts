@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { GameService } from '../../../services/http/game.service';
-import { Game } from '../../../model/game/game';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Game} from '../../../model/game/game';
+import {IGameService} from "../../../model/game/IGameService";
 
 @Component({
   selector: 'app-game-detail',
@@ -15,29 +15,31 @@ export class GameDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private gameService: GameService
-    ) {}
+    @Inject('IGameService') private gameService: IGameService
+  ) {
+  }
 
   ngOnInit(): void {
     this.getGame();
   }
 
-  getGame(){
+  getGame() {
     const id = this.route.snapshot.paramMap.get('id') as string;
+    this.editing = this.route.snapshot.paramMap.get('editing') == "true";
     this.gameService.getGame(id).subscribe(game => this.game = game);
   }
 
-  edit(){
-    this.editing = true;
+  edit() {
+    this.editing = !this.editing;
+    this.router.navigate(["/game/" + (this.game as Game).id, {editing: this.editing}]).then();
   }
 
-  updateGame(){
-    this.editing = false;
+  updateGame() {
     const updatedGame = this.game as Game;
-    this.gameService.updateGame(updatedGame.id, updatedGame).subscribe(() => this.getGame());
+    this.gameService.updateGame(updatedGame).subscribe(() => this.getGame());
   }
 
-  deleteGame(){
+  deleteGame() {
     this.gameService.deleteGame((this.game as Game).id).subscribe(() => this.router.navigateByUrl("/games"));
   }
 }

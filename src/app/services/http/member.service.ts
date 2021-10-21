@@ -2,11 +2,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Member} from '../../model/member/member';
+import {IMemberService} from "../../model/member/IMemberService";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MemberService {
+export class MemberService implements IMemberService {
 
   constructor(private http: HttpClient) {
   }
@@ -18,15 +19,15 @@ export class MemberService {
   }
 
   createMember(member: any): Observable<any> {
-    return this.http.post(this.membersURL, member);
+    return this.http.post(this.membersURL, member, {responseType: 'text'});
   }
 
   getMember(id: string): Observable<Member> {
     return this.http.get<Member>(this.membersURL + '/' + id);
   }
 
-  updateMember(id: string, member: Member): Observable<any> {
-    return this.http.put(this.membersURL + '/' + id, member);
+  updateMember(member: Member): Observable<any> {
+    return this.http.put(this.membersURL, member);
   }
 
   deleteMember(id: string): Observable<any> {

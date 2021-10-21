@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MemberService} from '../../services/http/member.service';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Member} from '../../model/member/member';
+import {Router} from "@angular/router";
+import {IMemberService} from "../../model/member/IMemberService";
 
 @Component({
   selector: 'app-members',
@@ -11,7 +12,8 @@ export class MembersComponent implements OnInit {
   members: Member[] = [];
 
   constructor(
-    private memberService: MemberService
+    private router: Router,
+    @Inject('IMemberService') private memberService: IMemberService
   ) {
   }
 
@@ -24,7 +26,12 @@ export class MembersComponent implements OnInit {
   }
 
   addMember() {
-    const newMember = {name: 'New Member', role: 'unassigned'};
-    this.memberService.createMember(newMember).subscribe(() => this.getMembers());
+    const newMember = {name: 'New Member', role: 'MEMBER'};
+    this.memberService.createMember(newMember).subscribe((uuid) => this.router.navigate(["/member/" + uuid, {editing: "true"}]));
+  }
+
+  deleteMember(member: Member) {
+    this.members.splice(this.members.indexOf(member), 1);
+    this.memberService.deleteMember(member.id);
   }
 }

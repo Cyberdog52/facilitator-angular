@@ -1,0 +1,11 @@
+textarea:disabled, input:disabled {
+  color: black;
+}
+
+textarea:enabled {
+  background: var(--primary-lighter-color);
+}
+
+textarea:focus {
+  background: var(--accent-lighter-color);
+}

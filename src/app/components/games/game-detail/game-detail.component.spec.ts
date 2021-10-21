@@ -1,6 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GameDetailComponent } from './game-detail.component';
+import {GameDetailComponent} from './game-detail.component';
+import {ActivatedRoute} from "@angular/router";
+import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {environment} from "../../../../environments/environment";
 
 describe('GameDetailComponent', () => {
   let component: GameDetailComponent;
@@ -8,9 +12,29 @@ describe('GameDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameDetailComponent ]
+      declarations: [GameDetailComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers:
+        [
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              snapshot: {
+                paramMap: {
+                  get: (id: string) => {
+                    id: '24fkzrw3487943uf358lovd'
+                  }
+                }
+              }
+            }
+          },
+          {
+            provide: 'IGameService',
+            useClass: environment.gameService
+          }
+        ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

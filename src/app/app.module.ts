@@ -20,6 +20,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {SafePipe} from "./safe.pipe";
 import {MatButtonModule} from "@angular/material/button";
+import {MatSelectModule} from "@angular/material/select";
+import {MatOptionModule} from "@angular/material/core";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatTabsModule} from "@angular/material/tabs";
+import {environment} from "../environments/environment";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 import {MatListModule} from "@angular/material/list";
 
 @NgModule({
@@ -46,10 +55,35 @@ import {MatListModule} from "@angular/material/list";
     BrowserAnimationsModule,
     MatButtonToggleModule,
     MatButtonModule,
+    //MemberEditorDropdown,
+    MatSelectModule,
+    MatOptionModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTabsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
     MatListModule
   ],
-  providers: [],
+  providers: [{
+    provide: 'IGameService',
+    useClass: environment.gameService
+  }, {
+    provide: 'IMeetingService',
+    useClass: environment.meetingService
+  }, {
+    provide: 'IMemberService',
+    useClass: environment.memberService
+  }, {
+    provide: 'IRoomService',
+    useClass: environment.roomService
+  }, {
+    provide: 'ITopicService',
+    useClass: environment.topicService
+  }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
